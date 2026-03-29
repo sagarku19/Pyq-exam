@@ -17,8 +17,8 @@ async function main() {
 
   const dataPath = path.join(__dirname, '../seeds/exams.json');
   if (!fs.existsSync(dataPath)) {
-      console.log('seeds/exams.json not found. Skipping taxonomy seed.');
-      return;
+    console.log('seeds/exams.json not found. Skipping taxonomy seed.');
+    return;
   }
 
   const examsData = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
