@@ -1,0 +1,2707 @@
+[
+  {
+    "name": "JEE Main",
+    "slug": "jee-main",
+    "description": "Joint Entrance Examination – Main conducted by NTA for admissions to NITs, IIITs, and other centrally funded technical institutions.",
+    "subjects": [
+      {
+        "name": "Physics",
+        "slug": "physics",
+        "chapters": [
+          {
+            "name": "Kinematics",
+            "slug": "kinematics",
+            "topics": [
+              "Distance, Displacement and Speed",
+              "Velocity and Acceleration",
+              "Equations of Motion",
+              "Projectile Motion",
+              "Relative Motion",
+              "Circular Motion Basics",
+              "Graphs in Kinematics"
+            ]
+          },
+          {
+            "name": "Laws of Motion",
+            "slug": "laws-of-motion",
+            "topics": [
+              "Newton's First Law and Inertia",
+              "Newton's Second Law – F = ma",
+              "Newton's Third Law",
+              "Friction – Static and Kinetic",
+              "Pulley Systems",
+              "Pseudo Force and Non-inertial Frames",
+              "Constraint Relations"
+            ]
+          },
+          {
+            "name": "Work, Energy and Power",
+            "slug": "work-energy-power",
+            "topics": [
+              "Work Done by a Force",
+              "Kinetic Energy and Work-Energy Theorem",
+              "Potential Energy",
+              "Conservation of Mechanical Energy",
+              "Power",
+              "Elastic and Inelastic Collisions",
+              "Spring Potential Energy"
+            ]
+          },
+          {
+            "name": "Rotational Motion",
+            "slug": "rotational-motion",
+            "topics": [
+              "Angular Displacement, Velocity, Acceleration",
+              "Moment of Inertia",
+              "Torque and Angular Momentum",
+              "Conservation of Angular Momentum",
+              "Rolling Motion",
+              "Parallel and Perpendicular Axis Theorems",
+              "Rotational Kinetic Energy"
+            ]
+          },
+          {
+            "name": "Gravitation",
+            "slug": "gravitation",
+            "topics": [
+              "Newton's Law of Gravitation",
+              "Gravitational Field and Potential",
+              "Escape Velocity",
+              "Orbital Velocity and Satellites",
+              "Kepler's Laws",
+              "Variation of g",
+              "Gravitational Potential Energy"
+            ]
+          },
+          {
+            "name": "Properties of Matter",
+            "slug": "properties-of-matter",
+            "topics": [
+              "Elasticity – Stress and Strain",
+              "Young's Modulus, Bulk Modulus, Shear Modulus",
+              "Fluid Pressure and Pascal's Law",
+              "Archimedes' Principle and Buoyancy",
+              "Surface Tension and Capillarity",
+              "Viscosity and Stokes' Law",
+              "Bernoulli's Theorem"
+            ]
+          },
+          {
+            "name": "Oscillations and Waves",
+            "slug": "oscillations-waves",
+            "topics": [
+              "Simple Harmonic Motion",
+              "Springs and Pendulums",
+              "Damped and Forced Oscillations",
+              "Wave Motion – Transverse and Longitudinal",
+              "Sound Waves and Intensity",
+              "Doppler Effect",
+              "Standing Waves and Resonance"
+            ]
+          },
+          {
+            "name": "Thermodynamics",
+            "slug": "thermodynamics",
+            "topics": [
+              "Thermal Expansion",
+              "Kinetic Theory of Gases",
+              "Laws of Thermodynamics",
+              "Isothermal and Adiabatic Processes",
+              "Carnot Engine and Efficiency",
+              "Heat Transfer – Conduction, Convection, Radiation",
+              "Specific Heat Capacities"
+            ]
+          },
+          {
+            "name": "Electrostatics",
+            "slug": "electrostatics",
+            "topics": [
+              "Coulomb's Law and Electric Force",
+              "Electric Field and Field Lines",
+              "Gauss's Law",
+              "Electric Potential and Potential Energy",
+              "Capacitors and Capacitance",
+              "Dielectrics",
+              "Energy Stored in Capacitors"
+            ]
+          },
+          {
+            "name": "Current Electricity",
+            "slug": "current-electricity",
+            "topics": [
+              "Ohm's Law and Resistance",
+              "Kirchhoff's Current and Voltage Laws",
+              "Wheatstone Bridge",
+              "Potentiometer",
+              "EMF and Internal Resistance",
+              "RC Circuits",
+              "Power in Electrical Circuits"
+            ]
+          },
+          {
+            "name": "Magnetism and Electromagnetism",
+            "slug": "magnetism-electromagnetism",
+            "topics": [
+              "Magnetic Force on Moving Charges",
+              "Biot-Savart Law",
+              "Ampere's Law",
+              "Faraday's Law of Induction",
+              "Lenz's Law",
+              "Self and Mutual Inductance",
+              "Alternating Current Circuits"
+            ]
+          },
+          {
+            "name": "Optics",
+            "slug": "optics",
+            "topics": [
+              "Reflection and Mirrors",
+              "Refraction and Lenses",
+              "Total Internal Reflection",
+              "Optical Instruments",
+              "Wave Optics – Interference",
+              "Diffraction and Polarization",
+              "Dispersion and Spectrum"
+            ]
+          },
+          {
+            "name": "Modern Physics",
+            "slug": "modern-physics",
+            "topics": [
+              "Photoelectric Effect",
+              "de Broglie Hypothesis",
+              "Bohr's Model of Hydrogen",
+              "X-Rays",
+              "Radioactivity and Nuclear Reactions",
+              "Nuclear Fission and Fusion",
+              "Semiconductor Devices"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Chemistry",
+        "slug": "chemistry",
+        "chapters": [
+          {
+            "name": "Some Basic Concepts",
+            "slug": "some-basic-concepts",
+            "topics": [
+              "Matter and its Classification",
+              "Laws of Chemical Combination",
+              "Mole Concept",
+              "Atomic and Molecular Masses",
+              "Stoichiometry",
+              "Limiting Reagent",
+              "Concentration Terms"
+            ]
+          },
+          {
+            "name": "Atomic Structure",
+            "slug": "atomic-structure",
+            "topics": [
+              "Discovery of Electron, Proton, Neutron",
+              "Bohr's Model",
+              "Quantum Mechanical Model",
+              "Quantum Numbers",
+              "Aufbau Principle, Pauli's Exclusion, Hund's Rule",
+              "Electronic Configuration",
+              "Periodic Trends"
+            ]
+          },
+          {
+            "name": "Chemical Bonding",
+            "slug": "chemical-bonding",
+            "topics": [
+              "Ionic Bond and Lattice Energy",
+              "Covalent Bond and Lewis Structures",
+              "VSEPR Theory",
+              "Hybridisation",
+              "Molecular Orbital Theory",
+              "Hydrogen Bonding",
+              "Metallic Bonding"
+            ]
+          },
+          {
+            "name": "States of Matter",
+            "slug": "states-of-matter",
+            "topics": [
+              "Gas Laws – Boyle's, Charles's, Gay-Lussac's",
+              "Ideal Gas Equation",
+              "Kinetic Molecular Theory",
+              "Real Gases and van der Waals Equation",
+              "Liquefaction of Gases",
+              "Liquid State Properties",
+              "Solid State – Crystal Systems"
+            ]
+          },
+          {
+            "name": "Thermodynamics",
+            "slug": "thermodynamics-chem",
+            "topics": [
+              "System and Surroundings",
+              "First Law of Thermodynamics",
+              "Enthalpy and Hess's Law",
+              "Second Law and Entropy",
+              "Gibbs Free Energy",
+              "Spontaneity",
+              "Bond Enthalpy"
+            ]
+          },
+          {
+            "name": "Equilibrium",
+            "slug": "equilibrium",
+            "topics": [
+              "Law of Mass Action",
+              "Equilibrium Constant Kc and Kp",
+              "Le Chatelier's Principle",
+              "Ionic Equilibrium and Dissociation",
+              "pH, pOH, pKa, pKb",
+              "Buffer Solutions",
+              "Solubility Product"
+            ]
+          },
+          {
+            "name": "Electrochemistry",
+            "slug": "electrochemistry",
+            "topics": [
+              "Electrochemical Cells",
+              "EMF and Standard Reduction Potential",
+              "Nernst Equation",
+              "Faraday's Laws of Electrolysis",
+              "Conductance and Conductivity",
+              "Batteries and Fuel Cells",
+              "Corrosion"
+            ]
+          },
+          {
+            "name": "Chemical Kinetics",
+            "slug": "chemical-kinetics",
+            "topics": [
+              "Rate of Reaction and Rate Law",
+              "Order and Molecularity",
+              "Integrated Rate Equations",
+              "Half-Life",
+              "Arrhenius Equation",
+              "Collision Theory",
+              "Photochemical Reactions"
+            ]
+          },
+          {
+            "name": "Solutions",
+            "slug": "solutions",
+            "topics": [
+              "Types of Solutions",
+              "Raoult's Law",
+              "Colligative Properties",
+              "Elevation in Boiling Point",
+              "Depression in Freezing Point",
+              "Osmotic Pressure",
+              "Abnormal Molar Masses"
+            ]
+          },
+          {
+            "name": "p-Block Elements",
+            "slug": "p-block-elements",
+            "topics": [
+              "Group 13 – Boron Family",
+              "Group 14 – Carbon Family",
+              "Group 15 – Nitrogen Family",
+              "Group 16 – Oxygen Family",
+              "Group 17 – Halogens",
+              "Group 18 – Noble Gases",
+              "Oxoacids of Halogens and S"
+            ]
+          },
+          {
+            "name": "d and f Block Elements",
+            "slug": "d-f-block",
+            "topics": [
+              "Transition Metals – Properties",
+              "Variable Oxidation States",
+              "Magnetic Properties and Colour",
+              "Catalytic Properties",
+              "Coordination Compounds – Werner's Theory",
+              "IUPAC Nomenclature",
+              "Lanthanides and Actinides"
+            ]
+          },
+          {
+            "name": "Organic Basics and Hydrocarbons",
+            "slug": "organic-basics-hydrocarbons",
+            "topics": [
+              "IUPAC Nomenclature",
+              "Isomerism – Structural and Stereoisomerism",
+              "Reaction Mechanisms – SN1, SN2, E1, E2",
+              "Alkanes – Properties and Reactions",
+              "Alkenes – Addition Reactions",
+              "Alkynes",
+              "Arenes and Aromaticity"
+            ]
+          },
+          {
+            "name": "Functional Group Chemistry",
+            "slug": "functional-group-chemistry",
+            "topics": [
+              "Haloalkanes and Haloarenes",
+              "Alcohols, Phenols, Ethers",
+              "Aldehydes and Ketones",
+              "Carboxylic Acids and Derivatives",
+              "Amines",
+              "Biomolecules – Carbohydrates, Proteins, Nucleic Acids",
+              "Polymers"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Mathematics",
+        "slug": "mathematics",
+        "chapters": [
+          {
+            "name": "Sets, Relations and Functions",
+            "slug": "sets-relations-functions",
+            "topics": [
+              "Sets and Venn Diagrams",
+              "Types of Relations",
+              "Types of Functions",
+              "Composition of Functions",
+              "Inverse Functions",
+              "Domain and Range",
+              "Binary Operations"
+            ]
+          },
+          {
+            "name": "Complex Numbers",
+            "slug": "complex-numbers",
+            "topics": [
+              "Algebra of Complex Numbers",
+              "Argand Plane and Polar Form",
+              "Modulus and Argument",
+              "De Moivre's Theorem",
+              "Cube Roots of Unity",
+              "Loci in Complex Plane",
+              "Square Root of Complex Number"
+            ]
+          },
+          {
+            "name": "Matrices and Determinants",
+            "slug": "matrices-determinants",
+            "topics": [
+              "Matrix Operations",
+              "Types of Matrices",
+              "Determinant and Properties",
+              "Adjoint and Inverse",
+              "Cramer's Rule",
+              "System of Linear Equations",
+              "Cayley-Hamilton Theorem"
+            ]
+          },
+          {
+            "name": "Permutations and Combinations",
+            "slug": "permutations-combinations",
+            "topics": [
+              "Fundamental Principle of Counting",
+              "Permutations",
+              "Combinations",
+              "Circular Permutations",
+              "Multinomial Theorem",
+              "Distribution Problems",
+              "Derangements"
+            ]
+          },
+          {
+            "name": "Binomial Theorem",
+            "slug": "binomial-theorem",
+            "topics": [
+              "Binomial Expansion",
+              "General and Middle Term",
+              "Binomial Coefficients",
+              "Multinomial Expansion",
+              "Pascal's Triangle",
+              "Approximations using Binomial",
+              "Greatest Term"
+            ]
+          },
+          {
+            "name": "Sequences and Series",
+            "slug": "sequences-series",
+            "topics": [
+              "Arithmetic Progression",
+              "Geometric Progression",
+              "Harmonic Progression",
+              "AM-GM-HM Inequalities",
+              "Sum to Infinity of GP",
+              "Special Series",
+              "Telescoping Series"
+            ]
+          },
+          {
+            "name": "Limits, Continuity and Differentiability",
+            "slug": "limits-continuity-differentiability",
+            "topics": [
+              "Limits and L'Hopital's Rule",
+              "Continuity of Functions",
+              "Differentiability",
+              "Derivatives – Standard Results",
+              "Chain Rule, Product Rule, Quotient Rule",
+              "Implicit and Parametric Differentiation",
+              "Higher Order Derivatives"
+            ]
+          },
+          {
+            "name": "Applications of Derivatives",
+            "slug": "applications-derivatives",
+            "topics": [
+              "Rate of Change",
+              "Tangents and Normals",
+              "Increasing and Decreasing Functions",
+              "Maxima and Minima",
+              "Mean Value Theorems",
+              "Approximations",
+              "Rolle's Theorem"
+            ]
+          },
+          {
+            "name": "Integral Calculus",
+            "slug": "integral-calculus",
+            "topics": [
+              "Indefinite Integration – Standard Formulas",
+              "Integration by Substitution",
+              "Integration by Parts",
+              "Partial Fractions",
+              "Definite Integrals",
+              "Area Under Curves",
+              "Properties of Definite Integrals"
+            ]
+          },
+          {
+            "name": "Differential Equations",
+            "slug": "differential-equations",
+            "topics": [
+              "Formation of Differential Equations",
+              "Variable Separable",
+              "Homogeneous Equations",
+              "Linear Differential Equations",
+              "Bernoulli's Equation",
+              "Exact Differential Equations",
+              "Applications of DEs"
+            ]
+          },
+          {
+            "name": "Coordinate Geometry",
+            "slug": "coordinate-geometry",
+            "topics": [
+              "Straight Lines – Equations and Slopes",
+              "Pair of Straight Lines",
+              "Circles – Equations and Properties",
+              "Parabola",
+              "Ellipse",
+              "Hyperbola",
+              "Tangent and Normal to Conics"
+            ]
+          },
+          {
+            "name": "Vectors and 3D Geometry",
+            "slug": "vectors-3d",
+            "topics": [
+              "Vectors – Types and Operations",
+              "Dot Product and Cross Product",
+              "Scalar Triple Product",
+              "3D Coordinates and Direction Cosines",
+              "Equation of Line in 3D",
+              "Equation of Plane",
+              "Distance Formulas in 3D"
+            ]
+          },
+          {
+            "name": "Trigonometry",
+            "slug": "trigonometry",
+            "topics": [
+              "Trigonometric Ratios and Identities",
+              "Compound Angles",
+              "Multiple and Sub-Multiple Angles",
+              "Trigonometric Equations",
+              "Inverse Trigonometric Functions",
+              "Properties of Triangles",
+              "Heights and Distances"
+            ]
+          },
+          {
+            "name": "Probability and Statistics",
+            "slug": "probability-statistics",
+            "topics": [
+              "Classical and Axiomatic Probability",
+              "Conditional Probability",
+              "Bayes' Theorem",
+              "Random Variables and Distributions",
+              "Binomial and Poisson Distributions",
+              "Mean, Variance, Standard Deviation",
+              "Normal Distribution Basics"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "JEE Advanced",
+    "slug": "jee-advanced",
+    "description": "Joint Entrance Examination – Advanced conducted by IITs for admission to IIT undergraduate programmes.",
+    "subjects": [
+      {
+        "name": "Physics",
+        "slug": "physics-adv",
+        "chapters": [
+          {
+            "name": "Advanced Mechanics",
+            "slug": "advanced-mechanics",
+            "topics": [
+              "Rigid Body Dynamics and MOI Tensors",
+              "Euler's Equations of Rotation",
+              "Fluid Mechanics – Continuity and Bernoulli",
+              "Viscous Flow and Reynolds Number",
+              "Elastic Collisions in 2D",
+              "Variable Mass Systems – Rockets",
+              "Fictitious Forces in Rotating Frames"
+            ]
+          },
+          {
+            "name": "Advanced Oscillations and Waves",
+            "slug": "advanced-oscillations-waves",
+            "topics": [
+              "Coupled Oscillations",
+              "Resonance and Q-Factor",
+              "Wave Interference – Path Difference",
+              "Stationary Waves on Strings",
+              "Doppler Effect – All Cases",
+              "Shock Waves and Mach Number",
+              "Beats and Superposition"
+            ]
+          },
+          {
+            "name": "Advanced Electrodynamics",
+            "slug": "advanced-electrodynamics",
+            "topics": [
+              "Gauss's Law with Symmetric Charge Distributions",
+              "Capacitors with Dielectrics – Complex Geometries",
+              "Magnetic Field Due to Current Distributions",
+              "Electromagnetic Induction – Self and Mutual",
+              "LCR Circuits at Resonance",
+              "Maxwell's Displacement Current",
+              "Poynting Vector and Energy Flow"
+            ]
+          },
+          {
+            "name": "Advanced Optics",
+            "slug": "advanced-optics",
+            "topics": [
+              "Young's Double Slit – Fringe Width and Intensity",
+              "Thin Film Interference",
+              "Single Slit Diffraction",
+              "Polarization – Malus's Law",
+              "Optical Activity and Rotation",
+              "Compound Microscope and Telescope",
+              "Aberrations in Lenses"
+            ]
+          },
+          {
+            "name": "Advanced Modern Physics",
+            "slug": "advanced-modern-physics",
+            "topics": [
+              "Photoelectric Effect – Threshold Frequency",
+              "Compton Scattering",
+              "Bohr Model – Energy Levels and Spectral Lines",
+              "Nuclear Binding Energy and Mass Defect",
+              "Radioactive Decay – Alpha, Beta, Gamma",
+              "Nuclear Reactions and Q-Value",
+              "Semiconductor Diodes and Transistors"
+            ]
+          },
+          {
+            "name": "Thermodynamics and Kinetic Theory",
+            "slug": "thermodynamics-kinetic",
+            "topics": [
+              "Maxwell Speed Distribution",
+              "Degrees of Freedom and Equipartition",
+              "Carnot Cycle and Maximum Efficiency",
+              "Entropy and Second Law",
+              "PV Diagrams – All Processes",
+              "Van der Waals Gas",
+              "Phase Transitions"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Chemistry",
+        "slug": "chemistry-adv",
+        "chapters": [
+          {
+            "name": "Advanced Physical Chemistry",
+            "slug": "advanced-physical-chemistry",
+            "topics": [
+              "Solid State – Crystal Systems and Defects",
+              "Colloids and Surface Chemistry",
+              "Nuclear Chemistry – Radioactive Series",
+              "Electrochemistry – Concentration Cells",
+              "Chemical Kinetics – Complex Reactions",
+              "Phase Rule and Phase Diagrams",
+              "Thermochemistry – Hess's Law Applications"
+            ]
+          },
+          {
+            "name": "Advanced Organic Chemistry",
+            "slug": "advanced-organic-chemistry",
+            "topics": [
+              "Stereochemistry – R/S, E/Z, Optical Activity",
+              "Named Reactions – Aldol, Claisen, Diels-Alder",
+              "Reaction Mechanisms – Carbocations and Carbanions",
+              "Aromatic Electrophilic Substitution",
+              "Biomolecules – Proteins and Amino Acids",
+              "Carbohydrate Chemistry",
+              "Polymer Chemistry – Types and Synthesis"
+            ]
+          },
+          {
+            "name": "Advanced Inorganic Chemistry",
+            "slug": "advanced-inorganic-chemistry",
+            "topics": [
+              "Qualitative Analysis – Systematic Group Separation",
+              "Extractive Metallurgy – Thermodynamic Principles",
+              "Coordination Chemistry – Crystal Field Theory",
+              "Magnetic Properties of Complexes",
+              "Organometallic Compounds",
+              "Lanthanides and Actinides",
+              "Comparative Study of Groups 15–18"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Mathematics",
+        "slug": "mathematics-adv",
+        "chapters": [
+          {
+            "name": "Advanced Algebra",
+            "slug": "advanced-algebra",
+            "topics": [
+              "Inequalities – AM-GM, Cauchy-Schwarz",
+              "Complex Number Geometry on Argand Plane",
+              "Theory of Equations – Roots and Coefficients",
+              "Functional Equations",
+              "Number Theory – Divisibility, Modular Arithmetic",
+              "Matrices – Eigenvalues and Eigenvectors",
+              "Principle of Mathematical Induction"
+            ]
+          },
+          {
+            "name": "Advanced Calculus",
+            "slug": "advanced-calculus",
+            "topics": [
+              "Integration Techniques – Reduction Formulas",
+              "Improper Integrals",
+              "Definite Integrals – Leibniz Rule",
+              "Differential Equations – Exact and Integrating Factor",
+              "Sequences – Convergence and Divergence",
+              "Taylor and Maclaurin Series",
+              "Multivariable Calculus Basics"
+            ]
+          },
+          {
+            "name": "Advanced Coordinate Geometry",
+            "slug": "advanced-coordinate-geometry",
+            "topics": [
+              "Conics – Parametric and Focal Properties",
+              "Polar Equation of Conics",
+              "Locus Problems",
+              "Pair of Tangents – Chord of Contact",
+              "3D Geometry – Skew Lines and Distance",
+              "Plane – Angle Between Planes",
+              "Sphere – Equations and Properties"
+            ]
+          },
+          {
+            "name": "Advanced Combinatorics and Probability",
+            "slug": "advanced-combinatorics-probability",
+            "topics": [
+              "Inclusion-Exclusion Principle",
+              "Generating Functions",
+              "Pigeonhole Principle",
+              "Conditional Probability and Independence",
+              "Geometric Probability",
+              "Expected Value and Variance",
+              "Markov Chains Basics"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "NEET UG",
+    "slug": "neet-ug",
+    "description": "National Eligibility cum Entrance Test for MBBS/BDS admissions in India conducted by NTA.",
+    "subjects": [
+      {
+        "name": "Physics",
+        "slug": "physics-neet",
+        "chapters": [
+          {
+            "name": "Physical World and Measurement",
+            "slug": "physical-world-measurement",
+            "topics": [
+              "Physical Quantities and Units",
+              "Dimensions and Dimensional Analysis",
+              "Significant Figures",
+              "Errors in Measurement",
+              "Vernier Calipers and Screw Gauge",
+              "SI System of Units",
+              "Fundamental and Derived Units"
+            ]
+          },
+          {
+            "name": "Kinematics",
+            "slug": "kinematics-neet",
+            "topics": [
+              "Motion in a Straight Line",
+              "Velocity-Time Graphs",
+              "Equations of Motion",
+              "Motion Under Gravity",
+              "Projectile Motion",
+              "Relative Velocity",
+              "Circular Motion"
+            ]
+          },
+          {
+            "name": "Laws of Motion and Friction",
+            "slug": "laws-of-motion-neet",
+            "topics": [
+              "Newton's Laws",
+              "Impulse and Momentum",
+              "Conservation of Momentum",
+              "Static and Kinetic Friction",
+              "Rolling Friction",
+              "Equilibrium of Forces",
+              "Centripetal Force"
+            ]
+          },
+          {
+            "name": "Work, Energy and Power",
+            "slug": "work-energy-power-neet",
+            "topics": [
+              "Work Done by Variable Force",
+              "Work-Energy Theorem",
+              "Conservative and Non-Conservative Forces",
+              "Elastic and Inelastic Collisions",
+              "Power and Efficiency",
+              "Potential Energy Curves",
+              "Spring Force and Energy"
+            ]
+          },
+          {
+            "name": "Gravitation",
+            "slug": "gravitation-neet",
+            "topics": [
+              "Law of Universal Gravitation",
+              "Acceleration due to Gravity",
+              "Variation of g with Height and Depth",
+              "Orbital Motion and Satellites",
+              "Kepler's Laws",
+              "Escape Velocity",
+              "Gravitational Potential Energy"
+            ]
+          },
+          {
+            "name": "Thermodynamics and Kinetic Theory",
+            "slug": "thermodynamics-neet",
+            "topics": [
+              "Modes of Heat Transfer",
+              "Newton's Law of Cooling",
+              "First Law of Thermodynamics",
+              "Isothermal, Adiabatic, Isobaric, Isochoric Processes",
+              "Kinetic Theory and Gas Laws",
+              "Specific Heat Capacities of Gases",
+              "Carnot Cycle"
+            ]
+          },
+          {
+            "name": "Electrostatics and Current Electricity",
+            "slug": "electrostatics-current-neet",
+            "topics": [
+              "Coulomb's Law",
+              "Electric Field and Potential",
+              "Capacitance and Energy",
+              "Ohm's Law and Kirchhoff's Laws",
+              "Combination of Resistors",
+              "EMF and Internal Resistance",
+              "Heating Effect of Current"
+            ]
+          },
+          {
+            "name": "Magnetic Effects and Optics",
+            "slug": "magnetic-optics-neet",
+            "topics": [
+              "Force on a Current-Carrying Conductor",
+              "Magnetic Field Due to Current",
+              "Electromagnetic Induction",
+              "Reflection – Plane and Curved Mirrors",
+              "Refraction and Snell's Law",
+              "Lens Formula",
+              "Human Eye and Defects of Vision"
+            ]
+          },
+          {
+            "name": "Modern Physics",
+            "slug": "modern-physics-neet",
+            "topics": [
+              "Photoelectric Effect",
+              "Bohr's Atomic Model",
+              "Hydrogen Spectrum",
+              "Radioactivity – Alpha, Beta, Gamma Decay",
+              "Nuclear Fission and Fusion",
+              "Semiconductor Devices – Diode, Transistor",
+              "Logic Gates"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Chemistry",
+        "slug": "chemistry-neet",
+        "chapters": [
+          {
+            "name": "Basic Concepts and Atomic Structure",
+            "slug": "basic-concepts-atomic",
+            "topics": [
+              "Laws of Chemical Combination",
+              "Mole Concept and Stoichiometry",
+              "Atomic Models – Thomson, Rutherford",
+              "Bohr's Model and Spectral Lines",
+              "Quantum Numbers",
+              "Electronic Configuration",
+              "Periodic Properties"
+            ]
+          },
+          {
+            "name": "Chemical Bonding and Molecular Structure",
+            "slug": "chemical-bonding-neet",
+            "topics": [
+              "Ionic and Covalent Bonds",
+              "Lewis Dot Structures",
+              "VSEPR Theory and Shapes",
+              "Hybridisation",
+              "Resonance",
+              "Polarity and Dipole Moment",
+              "Hydrogen Bonding"
+            ]
+          },
+          {
+            "name": "Thermodynamics and Equilibrium",
+            "slug": "thermodynamics-equilibrium-neet",
+            "topics": [
+              "Enthalpy and Hess's Law",
+              "Entropy and Gibbs Free Energy",
+              "Chemical Equilibrium – Kc and Kp",
+              "Le Chatelier's Principle",
+              "Ionic Equilibrium and pH",
+              "Buffer Solutions",
+              "Solubility Product"
+            ]
+          },
+          {
+            "name": "Redox Reactions and Electrochemistry",
+            "slug": "redox-electrochemistry-neet",
+            "topics": [
+              "Oxidation and Reduction",
+              "Oxidation Number",
+              "Balancing Redox Equations",
+              "Electrochemical Cells",
+              "EMF and Cell Potential",
+              "Electrolysis and Faraday's Laws",
+              "Conductance of Electrolytes"
+            ]
+          },
+          {
+            "name": "s-Block and p-Block Elements",
+            "slug": "s-p-block-neet",
+            "topics": [
+              "Alkali Metals – Properties and Compounds",
+              "Alkaline Earth Metals",
+              "Boron Family – Compounds of Boron",
+              "Carbon Family – Allotropes of Carbon",
+              "Nitrogen Family – Oxoacids",
+              "Halogen Family",
+              "Noble Gases"
+            ]
+          },
+          {
+            "name": "Organic Chemistry – Basics",
+            "slug": "organic-basics-neet",
+            "topics": [
+              "IUPAC Nomenclature",
+              "Isomerism – Structural and Stereoisomerism",
+              "Electronic Displacement Effects",
+              "Reaction Intermediates",
+              "Hydrocarbons",
+              "Petroleum and Petrol Products",
+              "Environmental Pollution"
+            ]
+          },
+          {
+            "name": "Functional Group Organic Chemistry",
+            "slug": "functional-group-neet",
+            "topics": [
+              "Haloalkanes and Haloarenes",
+              "Alcohols, Phenols, Ethers",
+              "Aldehydes, Ketones and Acids",
+              "Amines and Diazonium Salts",
+              "Carbohydrates – Glucose, Sucrose, Starch",
+              "Proteins and Amino Acids",
+              "Nucleic Acids and Vitamins"
+            ]
+          },
+          {
+            "name": "Solutions, Surface Chemistry and Polymers",
+            "slug": "solutions-surface-polymers",
+            "topics": [
+              "Colligative Properties",
+              "Types of Colloids",
+              "Tyndall Effect and Coagulation",
+              "Emulsions and Micelles",
+              "Adsorption and Catalysis",
+              "Classification of Polymers",
+              "Biodegradable and Non-Biodegradable Polymers"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Biology",
+        "slug": "biology-neet",
+        "chapters": [
+          {
+            "name": "Diversity in Living World",
+            "slug": "diversity-living-world",
+            "topics": [
+              "Taxonomy – Binomial Nomenclature",
+              "Five Kingdom Classification",
+              "Kingdom Monera – Bacteria",
+              "Kingdom Protista and Fungi",
+              "Kingdom Plantae – Cryptogams",
+              "Kingdom Animalia – Invertebrates",
+              "Viruses and Viroids"
+            ]
+          },
+          {
+            "name": "Plant Kingdom",
+            "slug": "plant-kingdom",
+            "topics": [
+              "Algae – Classification and Reproduction",
+              "Bryophytes",
+              "Pteridophytes",
+              "Gymnosperms",
+              "Angiosperms – Monocots and Dicots",
+              "Alternation of Generations",
+              "Economic Importance of Plants"
+            ]
+          },
+          {
+            "name": "Cell Biology and Biomolecules",
+            "slug": "cell-biology-biomolecules",
+            "topics": [
+              "Prokaryotic and Eukaryotic Cells",
+              "Cell Organelles – Structure and Function",
+              "Cell Membrane and Fluid Mosaic Model",
+              "Carbohydrates and Lipids",
+              "Proteins – Structure and Enzymes",
+              "Nucleic Acids – DNA and RNA",
+              "Cell Division – Mitosis and Meiosis"
+            ]
+          },
+          {
+            "name": "Plant Anatomy and Physiology",
+            "slug": "plant-anatomy-physiology",
+            "topics": [
+              "Tissues – Meristematic and Permanent",
+              "Xylem and Phloem Structure",
+              "Transpiration and Water Transport",
+              "Mineral Nutrition",
+              "Photosynthesis – Light and Dark Reactions",
+              "Respiration – Glycolysis, Krebs Cycle",
+              "Plant Growth Regulators"
+            ]
+          },
+          {
+            "name": "Human Physiology",
+            "slug": "human-physiology-neet",
+            "topics": [
+              "Digestion and Absorption",
+              "Breathing and Exchange of Gases",
+              "Blood – Composition and Groups",
+              "Heart – Structure and Cardiac Cycle",
+              "Excretion – Kidney and Nephron",
+              "Nervous System and Reflex Action",
+              "Endocrine System and Hormones"
+            ]
+          },
+          {
+            "name": "Reproduction",
+            "slug": "reproduction-neet",
+            "topics": [
+              "Vegetative Propagation in Plants",
+              "Sexual Reproduction in Flowering Plants",
+              "Double Fertilisation",
+              "Seed and Fruit Development",
+              "Human Reproductive System – Male",
+              "Human Reproductive System – Female",
+              "Reproductive Health and Contraception"
+            ]
+          },
+          {
+            "name": "Genetics and Evolution",
+            "slug": "genetics-evolution-neet",
+            "topics": [
+              "Mendel's Laws of Inheritance",
+              "Chromosomal Theory of Inheritance",
+              "Linkage and Crossing Over",
+              "DNA Replication",
+              "Transcription and Translation",
+              "Gene Regulation – Lac Operon",
+              "Darwin's Theory and Natural Selection"
+            ]
+          },
+          {
+            "name": "Ecology and Environment",
+            "slug": "ecology-environment-neet",
+            "topics": [
+              "Ecosystem Structure and Function",
+              "Food Chains and Energy Flow",
+              "Biogeochemical Cycles",
+              "Population Growth and Regulation",
+              "Biodiversity and Conservation",
+              "Environmental Issues – Pollution",
+              "Endangered Species and Protected Areas"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "GATE CSE",
+    "slug": "gate-cse",
+    "description": "Graduate Aptitude Test in Engineering – Computer Science and Information Technology.",
+    "subjects": [
+      {
+        "name": "Engineering Mathematics",
+        "slug": "engineering-mathematics",
+        "chapters": [
+          {
+            "name": "Linear Algebra",
+            "slug": "linear-algebra",
+            "topics": [
+              "Matrices – Rank and Determinants",
+              "System of Linear Equations",
+              "Eigenvalues and Eigenvectors",
+              "Cayley-Hamilton Theorem",
+              "Vector Spaces and Subspaces",
+              "Linear Transformations",
+              "Gram-Schmidt Orthogonalization"
+            ]
+          },
+          {
+            "name": "Calculus",
+            "slug": "calculus-gate",
+            "topics": [
+              "Limits and Continuity",
+              "Maxima and Minima",
+              "Mean Value Theorems",
+              "Definite Integrals",
+              "Partial Derivatives",
+              "Gradient, Divergence, Curl",
+              "Multiple Integrals"
+            ]
+          },
+          {
+            "name": "Probability and Statistics",
+            "slug": "probability-statistics-gate",
+            "topics": [
+              "Random Variables – Discrete and Continuous",
+              "Probability Distributions – Binomial, Poisson, Normal",
+              "Conditional Probability and Bayes' Theorem",
+              "Expected Value and Variance",
+              "Joint Distributions and Covariance",
+              "Hypothesis Testing",
+              "Markov Chains"
+            ]
+          },
+          {
+            "name": "Discrete Mathematics",
+            "slug": "discrete-mathematics",
+            "topics": [
+              "Propositional and First-Order Logic",
+              "Set Theory and Relations",
+              "Functions – Injective, Surjective, Bijective",
+              "Combinatorics – Counting Principles",
+              "Graph Theory – Trees and Connectivity",
+              "Algebraic Structures – Groups, Rings",
+              "Number Theory – GCD, Modular Arithmetic"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Digital Logic",
+        "slug": "digital-logic",
+        "chapters": [
+          {
+            "name": "Number Systems and Boolean Algebra",
+            "slug": "number-systems-boolean",
+            "topics": [
+              "Binary, Octal, Hexadecimal Conversions",
+              "Boolean Algebra Laws and Theorems",
+              "Canonical and Standard Forms",
+              "Karnaugh Map Minimization",
+              "Quine-McCluskey Method",
+              "Hazards in Combinational Circuits",
+              "Complement Number Systems"
+            ]
+          },
+          {
+            "name": "Combinational Circuits",
+            "slug": "combinational-circuits",
+            "topics": [
+              "Logic Gates – AND, OR, NOT, NAND, NOR, XOR",
+              "Multiplexers and Demultiplexers",
+              "Encoders and Decoders",
+              "Adders – Half and Full",
+              "Subtractors and ALU Design",
+              "Comparators",
+              "Code Converters"
+            ]
+          },
+          {
+            "name": "Sequential Circuits",
+            "slug": "sequential-circuits",
+            "topics": [
+              "Latches and Flip-Flops – SR, D, JK, T",
+              "Registers – Shift Registers",
+              "Counters – Synchronous and Asynchronous",
+              "Finite State Machines – Mealy and Moore",
+              "State Minimization",
+              "State Assignment",
+              "Timing Diagrams"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Computer Organization and Architecture",
+        "slug": "computer-organization",
+        "chapters": [
+          {
+            "name": "Machine Instructions and Addressing",
+            "slug": "machine-instructions",
+            "topics": [
+              "Instruction Set Architecture",
+              "Addressing Modes",
+              "RISC vs CISC",
+              "Instruction Formats",
+              "Stack and Queue Organization",
+              "Subroutines and Interrupts",
+              "Assembly Language Basics"
+            ]
+          },
+          {
+            "name": "Processor Design",
+            "slug": "processor-design",
+            "topics": [
+              "ALU Design",
+              "Datapath and Control Unit",
+              "Hardwired vs Microprogrammed Control",
+              "Instruction Pipelining",
+              "Pipeline Hazards – Structural, Data, Control",
+              "Branch Prediction",
+              "Superscalar Processors"
+            ]
+          },
+          {
+            "name": "Memory Hierarchy",
+            "slug": "memory-hierarchy",
+            "topics": [
+              "Cache Memory – Mapping Techniques",
+              "Cache Replacement Policies",
+              "Cache Write Policies",
+              "Main Memory – SRAM and DRAM",
+              "Virtual Memory and Paging",
+              "Page Replacement Algorithms",
+              "Memory Interleaving"
+            ]
+          },
+          {
+            "name": "I/O and Peripherals",
+            "slug": "io-peripherals",
+            "topics": [
+              "I/O Techniques – Polling, Interrupts, DMA",
+              "I/O Interfaces and Buses",
+              "Magnetic Disk Storage",
+              "Disk Scheduling Algorithms",
+              "Secondary Storage",
+              "Input Devices",
+              "Output Devices"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Programming and Data Structures",
+        "slug": "programming-ds",
+        "chapters": [
+          {
+            "name": "Arrays, Stacks and Queues",
+            "slug": "arrays-stacks-queues",
+            "topics": [
+              "Arrays – 1D and 2D",
+              "Stack Operations and Applications",
+              "Queue – Circular and Priority",
+              "Deque",
+              "Infix to Postfix Conversion",
+              "Expression Evaluation",
+              "Applications of Stacks and Queues"
+            ]
+          },
+          {
+            "name": "Linked Lists and Trees",
+            "slug": "linked-lists-trees",
+            "topics": [
+              "Singly and Doubly Linked Lists",
+              "Circular Linked Lists",
+              "Binary Trees – Traversals",
+              "Binary Search Trees",
+              "AVL Trees and Rotations",
+              "B-Trees and B+ Trees",
+              "Heaps and Priority Queues"
+            ]
+          },
+          {
+            "name": "Graphs and Hashing",
+            "slug": "graphs-hashing",
+            "topics": [
+              "Graph Representations – Adjacency Matrix and List",
+              "BFS and DFS",
+              "Topological Sort",
+              "Shortest Paths – Dijkstra, Bellman-Ford",
+              "Minimum Spanning Trees – Prim's, Kruskal's",
+              "Hash Functions and Collision Resolution",
+              "Chaining and Open Addressing"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Algorithms",
+        "slug": "algorithms",
+        "chapters": [
+          {
+            "name": "Algorithm Analysis",
+            "slug": "algorithm-analysis",
+            "topics": [
+              "Asymptotic Notations – O, Ω, Θ",
+              "Recurrence Relations – Master Theorem",
+              "Time and Space Complexity",
+              "Best, Worst, Average Case Analysis",
+              "Amortized Analysis",
+              "NP-Completeness",
+              "Polynomial Time Reductions"
+            ]
+          },
+          {
+            "name": "Sorting and Searching",
+            "slug": "sorting-searching",
+            "topics": [
+              "Comparison-Based Sorting – Merge, Quick, Heap",
+              "Linear Time Sorting – Counting, Radix, Bucket",
+              "Binary Search",
+              "Lower Bound for Sorting",
+              "Order Statistics",
+              "External Sorting",
+              "Selection Algorithms"
+            ]
+          },
+          {
+            "name": "Algorithm Design Paradigms",
+            "slug": "algorithm-paradigms",
+            "topics": [
+              "Divide and Conquer",
+              "Greedy Algorithms – Activity Selection, Huffman",
+              "Dynamic Programming – LCS, Knapsack, Matrix Chain",
+              "Backtracking",
+              "Branch and Bound",
+              "String Matching – KMP, Boyer-Moore",
+              "Approximation Algorithms"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Theory of Computation",
+        "slug": "theory-of-computation",
+        "chapters": [
+          {
+            "name": "Automata Theory",
+            "slug": "automata-theory",
+            "topics": [
+              "DFA and NFA",
+              "Conversion of NFA to DFA",
+              "Regular Expressions",
+              "Minimization of DFA",
+              "Equivalence of Automata",
+              "Two-Way Automata",
+              "Automata with Output – Mealy and Moore"
+            ]
+          },
+          {
+            "name": "Formal Languages",
+            "slug": "formal-languages",
+            "topics": [
+              "Regular Languages and Pumping Lemma",
+              "Context-Free Grammars",
+              "Pushdown Automata",
+              "Pumping Lemma for CFLs",
+              "Closure Properties",
+              "Chomsky Normal Form",
+              "Greibach Normal Form"
+            ]
+          },
+          {
+            "name": "Computability",
+            "slug": "computability",
+            "topics": [
+              "Turing Machines – Variants",
+              "Church-Turing Thesis",
+              "Decidable and Undecidable Problems",
+              "Halting Problem",
+              "Rice's Theorem",
+              "Reducibility",
+              "Recursive and RE Languages"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Compiler Design",
+        "slug": "compiler-design",
+        "chapters": [
+          {
+            "name": "Lexical and Syntax Analysis",
+            "slug": "lexical-syntax-analysis",
+            "topics": [
+              "Lexical Analysis – Tokens and Patterns",
+              "Finite Automata for Lexers",
+              "LEX Tool",
+              "Context-Free Grammars for Parsing",
+              "Top-Down Parsing – LL(1)",
+              "Bottom-Up Parsing – LR, SLR, LALR",
+              "YACC Tool"
+            ]
+          },
+          {
+            "name": "Semantic Analysis and Code Generation",
+            "slug": "semantic-code-generation",
+            "topics": [
+              "Attribute Grammars",
+              "Symbol Tables",
+              "Type Checking",
+              "Intermediate Code Generation – TAC",
+              "Code Optimization Techniques",
+              "Register Allocation",
+              "Code Generation Algorithms"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Operating Systems",
+        "slug": "operating-systems",
+        "chapters": [
+          {
+            "name": "Process Management",
+            "slug": "process-management",
+            "topics": [
+              "Process States and PCB",
+              "Process Scheduling – FCFS, SJF, RR, Priority",
+              "Context Switching",
+              "Threads and Multithreading",
+              "Inter-Process Communication",
+              "Fork and Exec",
+              "Process Synchronization"
+            ]
+          },
+          {
+            "name": "Concurrency and Deadlocks",
+            "slug": "concurrency-deadlocks",
+            "topics": [
+              "Race Conditions and Critical Section",
+              "Mutex and Semaphores",
+              "Monitors",
+              "Classical Problems – Dining Philosophers, Readers-Writers",
+              "Deadlock – Conditions and Detection",
+              "Deadlock Prevention and Avoidance",
+              "Banker's Algorithm"
+            ]
+          },
+          {
+            "name": "Memory Management",
+            "slug": "memory-management-os",
+            "topics": [
+              "Contiguous Memory Allocation",
+              "Segmentation",
+              "Paging and Page Tables",
+              "Virtual Memory and Demand Paging",
+              "Page Replacement – FIFO, LRU, Optimal",
+              "Thrashing",
+              "Belady's Anomaly"
+            ]
+          },
+          {
+            "name": "File Systems and I/O",
+            "slug": "file-systems-io",
+            "topics": [
+              "File Concept and Directory Structure",
+              "File Allocation Methods",
+              "Free Space Management",
+              "Disk Scheduling – SSTF, SCAN, C-SCAN",
+              "I/O Subsystem",
+              "Buffering and Caching",
+              "RAID Levels"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Databases",
+        "slug": "databases",
+        "chapters": [
+          {
+            "name": "Relational Model and SQL",
+            "slug": "relational-model-sql",
+            "topics": [
+              "ER Model to Relational Schema",
+              "Relational Algebra and Calculus",
+              "SQL – DDL, DML, DCL",
+              "Joins – Inner, Outer, Cross",
+              "Subqueries and Aggregation",
+              "Views and Triggers",
+              "Stored Procedures"
+            ]
+          },
+          {
+            "name": "Normalization and Transactions",
+            "slug": "normalization-transactions",
+            "topics": [
+              "Functional Dependencies",
+              "1NF, 2NF, 3NF, BCNF",
+              "Multivalued Dependencies and 4NF",
+              "ACID Properties",
+              "Concurrency Control – 2PL, Timestamp",
+              "Recovery – Logging, Checkpointing",
+              "Serializability"
+            ]
+          },
+          {
+            "name": "Indexing and Query Processing",
+            "slug": "indexing-query-processing",
+            "topics": [
+              "Indexing – Dense, Sparse, Multi-Level",
+              "B-Trees and B+ Trees for Indexing",
+              "Hashing for Indexing",
+              "Query Optimization",
+              "Join Algorithms",
+              "Query Execution Plans",
+              "NoSQL Basics"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Computer Networks",
+        "slug": "computer-networks",
+        "chapters": [
+          {
+            "name": "Data Link and Network Layer",
+            "slug": "data-link-network",
+            "topics": [
+              "Framing and Error Detection – CRC",
+              "Sliding Window Protocols",
+              "MAC Protocols – CSMA/CD, CSMA/CA",
+              "IPv4 and IPv6 Addressing",
+              "Subnetting and CIDR",
+              "Routing Algorithms – Dijkstra, Bellman-Ford",
+              "Routing Protocols – OSPF, BGP"
+            ]
+          },
+          {
+            "name": "Transport and Application Layer",
+            "slug": "transport-application",
+            "topics": [
+              "TCP – Connection Setup, Flow Control, Congestion",
+              "UDP",
+              "Socket Programming",
+              "DNS – Resolution and Record Types",
+              "HTTP and HTTPS",
+              "FTP, SMTP, POP3, IMAP",
+              "Network Security – SSL/TLS Basics"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Software Engineering",
+        "slug": "software-engineering",
+        "chapters": [
+          {
+            "name": "SDLC and Requirements",
+            "slug": "sdlc-requirements",
+            "topics": [
+              "Waterfall, Spiral, Agile Models",
+              "Requirements Engineering",
+              "Software Requirements Specification",
+              "Use Cases and User Stories",
+              "Feasibility Study",
+              "Risk Analysis",
+              "Project Planning and Estimation"
+            ]
+          },
+          {
+            "name": "Design, Testing and Metrics",
+            "slug": "design-testing-metrics",
+            "topics": [
+              "Software Design Principles – Coupling, Cohesion",
+              "Design Patterns – Creational, Structural, Behavioral",
+              "Unit, Integration, System Testing",
+              "White Box and Black Box Testing",
+              "Code Coverage Metrics",
+              "Cyclomatic Complexity",
+              "Software Quality Assurance"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "GATE ECE",
+    "slug": "gate-ece",
+    "description": "Graduate Aptitude Test in Engineering – Electronics and Communication Engineering.",
+    "subjects": [
+      {
+        "name": "Engineering Mathematics",
+        "slug": "engineering-mathematics-ece",
+        "chapters": [
+          {
+            "name": "Linear Algebra and Calculus",
+            "slug": "linear-algebra-calculus-ece",
+            "topics": [
+              "Matrix Algebra and Rank",
+              "Eigenvalues and Eigenvectors",
+              "Differential Calculus – Maxima, Minima",
+              "Integral Calculus – Multiple Integrals",
+              "Vector Calculus – Divergence, Curl",
+              "Fourier Series",
+              "Laplace Transform"
+            ]
+          },
+          {
+            "name": "Differential Equations and Complex Analysis",
+            "slug": "de-complex-analysis",
+            "topics": [
+              "First and Second Order ODEs",
+              "Partial Differential Equations",
+              "Cauchy-Riemann Equations",
+              "Analytic Functions",
+              "Contour Integration",
+              "Residue Theorem",
+              "Conformal Mapping"
+            ]
+          },
+          {
+            "name": "Probability and Numerical Methods",
+            "slug": "probability-numerical",
+            "topics": [
+              "Random Variables and Distributions",
+              "Joint and Conditional Probability",
+              "Central Limit Theorem",
+              "Numerical Solutions to ODEs",
+              "Newton-Raphson Method",
+              "Numerical Integration – Trapezoidal, Simpson's",
+              "Interpolation Methods"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Network Theory",
+        "slug": "network-theory",
+        "chapters": [
+          {
+            "name": "Circuit Analysis",
+            "slug": "circuit-analysis",
+            "topics": [
+              "KVL and KCL",
+              "Mesh and Nodal Analysis",
+              "Thevenin's and Norton's Theorems",
+              "Superposition and Reciprocity",
+              "Maximum Power Transfer",
+              "Star-Delta Conversions",
+              "Millman's Theorem"
+            ]
+          },
+          {
+            "name": "AC Circuits and Two-Port Networks",
+            "slug": "ac-two-port",
+            "topics": [
+              "Phasors and Impedance",
+              "Series and Parallel Resonance",
+              "Filters – Low Pass, High Pass, Band Pass",
+              "Two-Port Network Parameters – Z, Y, H, ABCD",
+              "Signal Flow Graphs",
+              "Network Functions and Poles-Zeros",
+              "Transient Response of RLC Circuits"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Electronic Devices",
+        "slug": "electronic-devices",
+        "chapters": [
+          {
+            "name": "Semiconductor Fundamentals",
+            "slug": "semiconductor-fundamentals",
+            "topics": [
+              "Energy Band Theory",
+              "Intrinsic and Extrinsic Semiconductors",
+              "Carrier Statistics – Fermi Level",
+              "Drift and Diffusion Currents",
+              "P-N Junction – Formation and Depletion Region",
+              "Diode I-V Characteristics",
+              "Zener Diode and Breakdown"
+            ]
+          },
+          {
+            "name": "Transistors and Special Devices",
+            "slug": "transistors-special-devices",
+            "topics": [
+              "BJT – NPN and PNP Operation",
+              "BJT Configurations – CB, CE, CC",
+              "JFET and MOSFET Operation",
+              "MOS Capacitor",
+              "Small Signal Models of BJT and MOSFET",
+              "Tunnel Diode and Varactor",
+              "Solar Cells and Photodiodes"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Analog Circuits",
+        "slug": "analog-circuits",
+        "chapters": [
+          {
+            "name": "Amplifiers",
+            "slug": "amplifiers",
+            "topics": [
+              "BJT Amplifier Configurations",
+              "MOSFET Amplifier Configurations",
+              "Small Signal Analysis",
+              "Frequency Response – Miller Effect",
+              "Multistage Amplifiers",
+              "Differential Amplifiers",
+              "Power Amplifiers – Class A, B, AB"
+            ]
+          },
+          {
+            "name": "Feedback, Op-Amps and Oscillators",
+            "slug": "feedback-opamps-oscillators",
+            "topics": [
+              "Feedback Topologies",
+              "Effects of Feedback on Gain and Bandwidth",
+              "Ideal and Real Op-Amp",
+              "Op-Amp Circuits – Inverting, Non-Inverting, Integrator",
+              "Instrumentation Amplifier",
+              "Barkhausen Criterion",
+              "RC, LC and Crystal Oscillators"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Digital Circuits",
+        "slug": "digital-circuits-ece",
+        "chapters": [
+          {
+            "name": "Combinational and Sequential Logic",
+            "slug": "combinational-sequential-ece",
+            "topics": [
+              "Boolean Algebra and Karnaugh Maps",
+              "Combinational Circuits – Mux, Demux, Encoder",
+              "Flip-Flops – D, JK, T, SR",
+              "Registers and Counters",
+              "Finite State Machines",
+              "Semiconductor Memories – ROM, RAM, Flash",
+              "PLDs and FPGAs"
+            ]
+          },
+          {
+            "name": "ADC, DAC and Interfacing",
+            "slug": "adc-dac-interfacing",
+            "topics": [
+              "DAC Types – R-2R, Binary Weighted",
+              "ADC Types – Flash, SAR, Dual Slope",
+              "Sample and Hold Circuits",
+              "Nyquist Sampling Theorem",
+              "Quantization Noise",
+              "Microprocessor Interfacing",
+              "Bus Organization"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Signals and Systems",
+        "slug": "signals-and-systems",
+        "chapters": [
+          {
+            "name": "Continuous-Time Signals",
+            "slug": "continuous-time-signals",
+            "topics": [
+              "Signal Classification – Energy and Power",
+              "LTI Systems – Convolution",
+              "Fourier Series – Periodic Signals",
+              "Fourier Transform and Inverse",
+              "Properties of Fourier Transform",
+              "Laplace Transform – Region of Convergence",
+              "Transfer Functions and Stability"
+            ]
+          },
+          {
+            "name": "Discrete-Time Signals",
+            "slug": "discrete-time-signals",
+            "topics": [
+              "Discrete-Time Signals and Systems",
+              "DTFT and DFT",
+              "FFT Algorithm",
+              "Z-Transform – Properties and Inverse",
+              "FIR and IIR Filters",
+              "Sampling and Reconstruction",
+              "Multirate Signal Processing"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Control Systems",
+        "slug": "control-systems",
+        "chapters": [
+          {
+            "name": "System Modeling and Analysis",
+            "slug": "system-modeling",
+            "topics": [
+              "Transfer Functions",
+              "Block Diagram Algebra",
+              "Signal Flow Graphs and Mason's Rule",
+              "Steady-State Error",
+              "Time Domain Specifications",
+              "First and Second Order Systems",
+              "Sensitivity and Disturbance"
+            ]
+          },
+          {
+            "name": "Stability and Frequency Response",
+            "slug": "stability-frequency",
+            "topics": [
+              "Routh-Hurwitz Stability Criterion",
+              "Root Locus Method",
+              "Bode Plots",
+              "Nyquist Stability Criterion",
+              "Gain Margin and Phase Margin",
+              "PID Controllers",
+              "State-Space Representation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Communications",
+        "slug": "communications",
+        "chapters": [
+          {
+            "name": "Analog Communication",
+            "slug": "analog-communication",
+            "topics": [
+              "Amplitude Modulation – DSB, SSB, VSB",
+              "Frequency Modulation",
+              "Phase Modulation",
+              "Demodulation Techniques",
+              "Noise in Communication Systems",
+              "Signal-to-Noise Ratio",
+              "AM and FM Receivers"
+            ]
+          },
+          {
+            "name": "Digital Communication",
+            "slug": "digital-communication",
+            "topics": [
+              "PCM and Delta Modulation",
+              "Digital Modulation – ASK, FSK, PSK, QAM",
+              "Bit Error Rate",
+              "Information Theory – Entropy and Channel Capacity",
+              "Shannon's Theorem",
+              "Error Detection and Correction Codes",
+              "Spread Spectrum Techniques"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Electromagnetics",
+        "slug": "electromagnetics",
+        "chapters": [
+          {
+            "name": "Electrostatics and Magnetostatics",
+            "slug": "electrostatics-magnetostatics",
+            "topics": [
+              "Coulomb's Law and Gauss's Law in Vector Form",
+              "Electric Potential and Energy",
+              "Boundary Conditions for E-Field",
+              "Biot-Savart and Ampere's Laws",
+              "Magnetic Vector Potential",
+              "Boundary Conditions for H-Field",
+              "Magnetic Materials"
+            ]
+          },
+          {
+            "name": "EM Waves and Transmission Lines",
+            "slug": "em-waves-transmission-lines",
+            "topics": [
+              "Maxwell's Equations",
+              "Plane Wave Propagation",
+              "Polarization of EM Waves",
+              "Reflection and Refraction at Boundaries",
+              "Transmission Line Theory – Characteristic Impedance",
+              "Standing Wave Ratio",
+              "Waveguides – TE and TM Modes"
+            ]
+          },
+          {
+            "name": "Antennas and Microwave Engineering",
+            "slug": "antennas-microwave",
+            "topics": [
+              "Antenna Parameters – Gain, Directivity",
+              "Dipole and Loop Antennas",
+              "Antenna Arrays",
+              "Microwave Devices – Klystron, Magnetron",
+              "Microstrip Lines",
+              "S-Parameters",
+              "Radar – Principles and Equations"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "UPSC CSE",
+    "slug": "upsc-cse",
+    "description": "Civil Services Examination conducted by UPSC for recruitment to IAS, IPS, IFS and other Group A & B services.",
+    "subjects": [
+      {
+        "name": "General Studies I",
+        "slug": "gs1",
+        "chapters": [
+          {
+            "name": "Indian History",
+            "slug": "indian-history",
+            "topics": [
+              "Ancient India – Indus Valley to Gupta Period",
+              "Medieval India – Delhi Sultanate and Mughals",
+              "Modern India – British Colonialism",
+              "Indian National Movement – 1857 to Independence",
+              "Social and Religious Reform Movements",
+              "Post-Independence Consolidation",
+              "Art and Culture – Architecture, Literature, Music"
+            ]
+          },
+          {
+            "name": "World History",
+            "slug": "world-history",
+            "topics": [
+              "French Revolution and Napoleon",
+              "Industrial Revolution",
+              "World War I – Causes and Consequences",
+              "World War II – Rise of Fascism",
+              "Cold War and Decolonization",
+              "Russian and Chinese Revolutions",
+              "Post-War International Order"
+            ]
+          },
+          {
+            "name": "Indian and World Geography",
+            "slug": "indian-world-geography",
+            "topics": [
+              "Physical Geography – Geomorphology, Climatology",
+              "Indian Rivers, Mountains and Plains",
+              "Soil Types and Distribution",
+              "Natural Vegetation and Wildlife",
+              "Economic Geography – Agriculture, Industry",
+              "Population Geography – Census, Migration",
+              "World Geographical Features"
+            ]
+          },
+          {
+            "name": "Indian Society",
+            "slug": "indian-society",
+            "topics": [
+              "Diversity in India – Regional, Linguistic, Religious",
+              "Caste System and Social Stratification",
+              "Women Empowerment and Gender Issues",
+              "Poverty and Social Exclusion",
+              "Urbanization and Rural Development",
+              "Communalism, Regionalism, Secularism",
+              "Role of NGOs and Civil Society"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "General Studies II",
+        "slug": "gs2",
+        "chapters": [
+          {
+            "name": "Indian Constitution and Polity",
+            "slug": "constitution-polity",
+            "topics": [
+              "Making of the Constitution – Constituent Assembly",
+              "Fundamental Rights and Duties",
+              "Directive Principles of State Policy",
+              "Parliament – Structure and Functions",
+              "President, PM, Council of Ministers",
+              "Judiciary – Supreme Court to District Courts",
+              "Federalism and Centre-State Relations"
+            ]
+          },
+          {
+            "name": "Governance and Public Policy",
+            "slug": "governance-public-policy",
+            "topics": [
+              "Civil Services – Structure and Role",
+              "E-Governance and Digital India",
+              "Important Government Schemes",
+              "Citizens' Charter and Right to Service",
+              "RTI Act and Transparency",
+              "Regulatory Bodies – TRAI, SEBI, CCI",
+              "Decentralization – Panchayati Raj"
+            ]
+          },
+          {
+            "name": "International Relations",
+            "slug": "international-relations",
+            "topics": [
+              "India's Foreign Policy – Principles",
+              "India's Neighbourhood Policy",
+              "India and Major Powers – USA, Russia, China",
+              "India and Global Institutions – UN, WTO, IMF",
+              "Regional Groupings – SAARC, BRICS, SCO",
+              "Bilateral Agreements and Treaties",
+              "Diaspora and Soft Power"
+            ]
+          },
+          {
+            "name": "Social Justice and Rights",
+            "slug": "social-justice-rights",
+            "topics": [
+              "Welfare Schemes for Vulnerable Sections",
+              "Mechanisms for Protection of Minorities",
+              "Child and Women Rights – National Bodies",
+              "Issues Relating to Health and Education",
+              "Human Rights Institutions",
+              "Inclusive Growth and Poverty Alleviation",
+              "SCs, STs, OBCs – Constitutional Provisions"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "General Studies III",
+        "slug": "gs3",
+        "chapters": [
+          {
+            "name": "Indian Economy",
+            "slug": "indian-economy",
+            "topics": [
+              "Economic Planning – History and NITI Aayog",
+              "Agriculture – Green Revolution, Challenges",
+              "Land Reforms and Cooperative Farming",
+              "Industry – Licensing, LPG Reforms",
+              "Infrastructure – Roads, Railways, Ports",
+              "Investment Models – PPP, FDI, FII",
+              "Inflation, Fiscal Deficit, Balance of Payments"
+            ]
+          },
+          {
+            "name": "Science and Technology",
+            "slug": "science-technology",
+            "topics": [
+              "Space Technology – ISRO Missions",
+              "Nuclear Technology and Energy",
+              "Defence Technology – DRDO",
+              "Biotechnology and Genetic Engineering",
+              "IT and Cybersecurity",
+              "Artificial Intelligence and Robotics",
+              "Nano-technology"
+            ]
+          },
+          {
+            "name": "Environment and Ecology",
+            "slug": "environment-ecology",
+            "topics": [
+              "Ecosystem Services and Biodiversity",
+              "Climate Change – UNFCCC, Paris Agreement",
+              "Environmental Laws and Institutions",
+              "Pollution – Air, Water, Soil, Noise",
+              "Wildlife Conservation – Protected Areas",
+              "Environmental Impact Assessment",
+              "Disaster Management – NDMA"
+            ]
+          },
+          {
+            "name": "Internal Security",
+            "slug": "internal-security",
+            "topics": [
+              "Role of External Forces in Insurgency",
+              "Terrorism – Types and Counter Measures",
+              "Left Wing Extremism",
+              "North-East Insurgency",
+              "Cybersecurity Threats",
+              "Organized Crime and Money Laundering",
+              "Border Management"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "General Studies IV – Ethics",
+        "slug": "gs4",
+        "chapters": [
+          {
+            "name": "Ethics and Moral Philosophy",
+            "slug": "ethics-moral-philosophy",
+            "topics": [
+              "Essence of Ethics",
+              "Determinants of Ethics",
+              "Ethical Theories – Consequentialism, Deontology",
+              "Virtue Ethics and Care Ethics",
+              "Ethics in Public vs Private Life",
+              "Moral Thinkers – Gandhi, Aristotle, Kant",
+              "Role of Family, Society in Moral Development"
+            ]
+          },
+          {
+            "name": "Integrity and Aptitude in Civil Services",
+            "slug": "integrity-aptitude",
+            "topics": [
+              "Integrity – Concept and Application",
+              "Work Culture and Values",
+              "Emotional Intelligence",
+              "Attitude – Components and Change",
+              "Moral Distress and Ethical Dilemmas",
+              "Accountability and Transparency",
+              "Good Governance – Ethical Dimensions"
+            ]
+          },
+          {
+            "name": "Case Studies in Ethics",
+            "slug": "case-studies-ethics",
+            "topics": [
+              "Corruption – Causes and Remedies",
+              "Whistleblowing Dilemmas",
+              "Public Interest vs Private Interest",
+              "Conflict of Interest",
+              "Probity in Governance",
+              "Ethical Issues in International Relations",
+              "Corporate Governance"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CSAT",
+        "slug": "csat",
+        "chapters": [
+          {
+            "name": "Comprehension and Communication",
+            "slug": "comprehension-communication",
+            "topics": [
+              "Reading Comprehension Strategies",
+              "Inferential and Critical Reading",
+              "Para Summary and Main Idea",
+              "Effective Communication Principles",
+              "Interpersonal Skills",
+              "Written Communication",
+              "Decision-Making Framework"
+            ]
+          },
+          {
+            "name": "Analytical and Logical Reasoning",
+            "slug": "analytical-logical",
+            "topics": [
+              "Statements and Conclusions",
+              "Syllogisms",
+              "Logical Puzzles",
+              "Data Interpretation – Tables, Graphs",
+              "Analytical Reasoning – Seating, Blood Relations",
+              "Critical Thinking",
+              "Arguments and Assumptions"
+            ]
+          },
+          {
+            "name": "Quantitative Aptitude",
+            "slug": "quantitative-aptitude-csat",
+            "topics": [
+              "Number Systems and Simplification",
+              "Percentages, Profit and Loss",
+              "Ratios and Averages",
+              "Time, Speed and Distance",
+              "Work and Time Problems",
+              "Basic Geometry and Mensuration",
+              "Data Sufficiency"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SSC CGL",
+    "slug": "ssc-cgl",
+    "description": "Staff Selection Commission Combined Graduate Level Examination for Group B and C posts in central government.",
+    "subjects": [
+      {
+        "name": "Quantitative Aptitude",
+        "slug": "quant",
+        "chapters": [
+          {
+            "name": "Arithmetic",
+            "slug": "arithmetic",
+            "topics": [
+              "Number Systems – HCF, LCM",
+              "Percentages and Applications",
+              "Profit, Loss and Discount",
+              "Simple and Compound Interest",
+              "Ratio, Proportion and Averages",
+              "Time, Speed and Distance",
+              "Time and Work"
+            ]
+          },
+          {
+            "name": "Algebra and Advanced Mathematics",
+            "slug": "algebra-advanced",
+            "topics": [
+              "Linear Equations",
+              "Quadratic Equations",
+              "Polynomials and Identities",
+              "Sequences and Progressions",
+              "Inequalities",
+              "Surds and Indices",
+              "Logarithms"
+            ]
+          },
+          {
+            "name": "Geometry and Mensuration",
+            "slug": "geometry-mensuration",
+            "topics": [
+              "Lines, Angles and Triangles",
+              "Congruence and Similarity",
+              "Circles – Theorems",
+              "Polygons",
+              "Area and Perimeter of 2D Figures",
+              "Volume and Surface Area of 3D Figures",
+              "Coordinate Geometry Basics"
+            ]
+          },
+          {
+            "name": "Trigonometry and Statistics",
+            "slug": "trigonometry-statistics",
+            "topics": [
+              "Trigonometric Ratios",
+              "Trigonometric Identities",
+              "Heights and Distances",
+              "Complementary Angles",
+              "Mean, Median, Mode",
+              "Standard Deviation and Variance",
+              "Frequency Distribution and Histograms"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "General Intelligence and Reasoning",
+        "slug": "general-intelligence",
+        "chapters": [
+          {
+            "name": "Verbal Reasoning",
+            "slug": "verbal-reasoning",
+            "topics": [
+              "Analogies – Semantic and Figural",
+              "Classification",
+              "Series Completion",
+              "Coding and Decoding",
+              "Blood Relations",
+              "Direction Sense",
+              "Alphabet and Number Test"
+            ]
+          },
+          {
+            "name": "Non-Verbal Reasoning",
+            "slug": "non-verbal-reasoning",
+            "topics": [
+              "Pattern Completion",
+              "Mirror and Water Images",
+              "Paper Folding and Punching",
+              "Counting of Figures",
+              "Embedded Figures",
+              "Figure Matrix",
+              "Venn Diagrams"
+            ]
+          },
+          {
+            "name": "Logical and Analytical Reasoning",
+            "slug": "logical-analytical",
+            "topics": [
+              "Seating Arrangements",
+              "Puzzles",
+              "Syllogisms",
+              "Statements and Conclusions",
+              "Assumptions and Inferences",
+              "Cause and Effect",
+              "Decision Making"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "English Language and Comprehension",
+        "slug": "english",
+        "chapters": [
+          {
+            "name": "Grammar and Usage",
+            "slug": "grammar-usage",
+            "topics": [
+              "Tenses and Verb Forms",
+              "Subject-Verb Agreement",
+              "Articles and Prepositions",
+              "Active and Passive Voice",
+              "Direct and Indirect Speech",
+              "Conjunctions and Modifiers",
+              "Common Grammatical Errors"
+            ]
+          },
+          {
+            "name": "Vocabulary",
+            "slug": "vocabulary",
+            "topics": [
+              "Synonyms and Antonyms",
+              "One Word Substitutions",
+              "Idioms and Phrases",
+              "Word Usage in Context",
+              "Root Words and Affixes",
+              "Confusable Words",
+              "Spelling Correction"
+            ]
+          },
+          {
+            "name": "Reading and Writing Skills",
+            "slug": "reading-writing",
+            "topics": [
+              "Reading Comprehension Passages",
+              "Cloze Test",
+              "Sentence Correction",
+              "Para Jumbles",
+              "Sentence Completion",
+              "Spot the Error",
+              "Précis Writing"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "General Awareness",
+        "slug": "general-awareness",
+        "chapters": [
+          {
+            "name": "Static GK",
+            "slug": "static-gk",
+            "topics": [
+              "Indian History – Ancient to Modern",
+              "Indian Geography – Physical and Political",
+              "Indian Polity and Constitution",
+              "Indian Economy",
+              "Science – Physics, Chemistry, Biology",
+              "Sports and Cultural Events",
+              "Important Days and Awards"
+            ]
+          },
+          {
+            "name": "Current Affairs",
+            "slug": "current-affairs",
+            "topics": [
+              "National News – Policies and Schemes",
+              "International Relations",
+              "Economy and Finance News",
+              "Science and Technology Updates",
+              "Sports Current Events",
+              "Environment and Ecology News",
+              "Government Reports and Committees"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "IBPS PO",
+    "slug": "ibps-po",
+    "description": "Institute of Banking Personnel Selection Probationary Officer Examination for public sector banks.",
+    "subjects": [
+      {
+        "name": "Quantitative Aptitude",
+        "slug": "quant-ibps",
+        "chapters": [
+          {
+            "name": "Arithmetic and Number Systems",
+            "slug": "arithmetic-number-ibps",
+            "topics": [
+              "Number Series and Missing Numbers",
+              "Simplification and Approximation",
+              "Percentages and Profit-Loss",
+              "Ratio and Proportion",
+              "Simple and Compound Interest",
+              "Time, Speed and Distance",
+              "Time and Work – Pipes and Cisterns"
+            ]
+          },
+          {
+            "name": "Data Interpretation",
+            "slug": "data-interpretation-ibps",
+            "topics": [
+              "Bar Graphs",
+              "Line Graphs",
+              "Pie Charts",
+              "Tables",
+              "Mixed DI Sets",
+              "Caselet DI",
+              "Missing DI"
+            ]
+          },
+          {
+            "name": "Advanced Quantitative Topics",
+            "slug": "advanced-quant-ibps",
+            "topics": [
+              "Quadratic Equations",
+              "Data Sufficiency",
+              "Probability",
+              "Permutations and Combinations",
+              "Mensuration",
+              "Mixtures and Alligation",
+              "Average and Age Problems"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Reasoning Ability",
+        "slug": "reasoning-ibps",
+        "chapters": [
+          {
+            "name": "Puzzles and Seating Arrangement",
+            "slug": "puzzles-seating",
+            "topics": [
+              "Linear Seating Arrangement",
+              "Circular Seating Arrangement",
+              "Floor-Based Puzzles",
+              "Box-Based Puzzles",
+              "Month-Date Puzzles",
+              "Scheduling Problems",
+              "Complex Hybrid Puzzles"
+            ]
+          },
+          {
+            "name": "Logical Reasoning",
+            "slug": "logical-reasoning-ibps",
+            "topics": [
+              "Coding-Decoding",
+              "Syllogisms",
+              "Blood Relations",
+              "Direction and Distance",
+              "Inequalities",
+              "Input-Output Problems",
+              "Order and Ranking"
+            ]
+          },
+          {
+            "name": "Verbal Reasoning",
+            "slug": "verbal-reasoning-ibps",
+            "topics": [
+              "Statement and Conclusion",
+              "Cause and Effect",
+              "Assumptions and Inferences",
+              "Logical Data Sufficiency",
+              "Course of Action",
+              "Critical Reasoning",
+              "Analogy and Classification"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "English Language",
+        "slug": "english-ibps",
+        "chapters": [
+          {
+            "name": "Reading Comprehension",
+            "slug": "reading-comprehension-ibps",
+            "topics": [
+              "Factual Questions",
+              "Inferential Questions",
+              "Vocabulary in Context",
+              "Main Theme and Tone",
+              "Author's Purpose",
+              "True or False Statements",
+              "Paragraph-Based Questions"
+            ]
+          },
+          {
+            "name": "Grammar and Vocabulary",
+            "slug": "grammar-vocabulary-ibps",
+            "topics": [
+              "Cloze Test",
+              "Para Jumbles",
+              "Error Detection",
+              "Sentence Improvement",
+              "Fill in the Blanks",
+              "Word Swap and Replacement",
+              "Synonyms, Antonyms, Idioms"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Banking Awareness",
+        "slug": "banking-awareness",
+        "chapters": [
+          {
+            "name": "Banking Fundamentals",
+            "slug": "banking-fundamentals",
+            "topics": [
+              "History of Banking in India",
+              "RBI – Functions and Monetary Policy",
+              "Types of Banks and Their Roles",
+              "NABARD, SIDBI, EXIM Bank",
+              "Banking Products – Deposits, Loans",
+              "Banking Terminology – NEFT, RTGS, IMPS",
+              "Financial Inclusion and Jan Dhan"
+            ]
+          },
+          {
+            "name": "Financial Markets and Regulations",
+            "slug": "financial-markets-regulations",
+            "topics": [
+              "Money Market Instruments",
+              "Capital Markets – NSE, BSE",
+              "Securities – Equities, Bonds, Derivatives",
+              "SEBI and Regulatory Framework",
+              "Basel Norms – I, II, III",
+              "NPA, SARFAESI Act",
+              "Insurance – IRDA and Products"
+            ]
+          },
+          {
+            "name": "Current Banking and Economic Affairs",
+            "slug": "current-banking-economic",
+            "topics": [
+              "Recent RBI Monetary Policy Decisions",
+              "Government Economic Schemes",
+              "Budget Highlights",
+              "Union and State Finance",
+              "Digital Banking – UPI, BHIM",
+              "International Finance – IMF, World Bank",
+              "Recent Bank Mergers and Reforms"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Computer Knowledge",
+        "slug": "computer-knowledge",
+        "chapters": [
+          {
+            "name": "Computer Fundamentals",
+            "slug": "computer-fundamentals",
+            "topics": [
+              "History and Generations of Computers",
+              "Hardware – CPU, Memory, I/O Devices",
+              "Software – System and Application",
+              "Operating System Concepts",
+              "MS Office – Word, Excel, PowerPoint",
+              "Internet and Email Basics",
+              "Database Basics – DBMS Concepts"
+            ]
+          },
+          {
+            "name": "Networking and Security",
+            "slug": "networking-security-ibps",
+            "topics": [
+              "Network Topologies and Types",
+              "Internet Protocols – TCP/IP",
+              "Cybersecurity Threats – Phishing, Malware",
+              "Encryption and Digital Signatures",
+              "Firewall and Antivirus",
+              "Cloud Computing Basics",
+              "Mobile Computing and Apps"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "CAT",
+    "slug": "cat",
+    "description": "Common Admission Test for admission to IIMs and other top B-Schools in India.",
+    "subjects": [
+      {
+        "name": "Verbal Ability and Reading Comprehension",
+        "slug": "varc",
+        "chapters": [
+          {
+            "name": "Reading Comprehension",
+            "slug": "reading-comprehension-cat",
+            "topics": [
+              "Literary and Humanities Passages",
+              "Science and Technology Passages",
+              "Social Science Passages",
+              "Economics and Business Passages",
+              "Main Idea and Primary Purpose",
+              "Inferential and Critical Questions",
+              "Tone and Author's Attitude"
+            ]
+          },
+          {
+            "name": "Verbal Ability",
+            "slug": "verbal-ability-cat",
+            "topics": [
+              "Para Jumbles – 4 and 5 Sentences",
+              "Para Summary",
+              "Odd Sentence Out",
+              "Sentence Completion",
+              "Fact, Inference, Judgement",
+              "Critical Reasoning",
+              "Vocabulary in Context"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Data Interpretation and Logical Reasoning",
+        "slug": "dilr",
+        "chapters": [
+          {
+            "name": "Data Interpretation",
+            "slug": "data-interpretation-cat",
+            "topics": [
+              "Tables – Single and Multiple",
+              "Bar Charts and Line Graphs",
+              "Pie Charts",
+              "Caselets and Text-Based DI",
+              "Mixed Chart Sets",
+              "Data Comparison and Rankings",
+              "Games and Tournaments"
+            ]
+          },
+          {
+            "name": "Logical Reasoning",
+            "slug": "logical-reasoning-cat",
+            "topics": [
+              "Seating and Arrangement Puzzles",
+              "Scheduling and Sequencing",
+              "Team Selection Sets",
+              "Binary Logic – Truth Tellers and Liars",
+              "Routes and Networks",
+              "Grouping and Matching",
+              "Constraint-Based Puzzles"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Quantitative Aptitude",
+        "slug": "quantitative-aptitude",
+        "chapters": [
+          {
+            "name": "Arithmetic",
+            "slug": "arithmetic-cat",
+            "topics": [
+              "Percentages and Profit-Loss",
+              "Ratio, Proportion and Mixtures",
+              "Time, Speed and Distance",
+              "Time and Work",
+              "Simple and Compound Interest",
+              "Averages and Weighted Averages",
+              "Calendar and Clock Problems"
+            ]
+          },
+          {
+            "name": "Algebra",
+            "slug": "algebra-cat",
+            "topics": [
+              "Linear and Quadratic Equations",
+              "Polynomials and Roots",
+              "Inequalities",
+              "Functions and Graphs",
+              "Logarithms and Surds",
+              "Sequences – AP, GP, HP",
+              "Set Theory and Venn Diagrams"
+            ]
+          },
+          {
+            "name": "Geometry and Number Systems",
+            "slug": "geometry-number-cat",
+            "topics": [
+              "Lines, Angles and Triangles",
+              "Circles and Quadrilaterals",
+              "Coordinate Geometry",
+              "Mensuration – 2D and 3D",
+              "Solid Geometry",
+              "Number Theory – HCF, LCM, Remainders",
+              "Divisibility and Factorials"
+            ]
+          },
+          {
+            "name": "Modern Mathematics",
+            "slug": "modern-mathematics-cat",
+            "topics": [
+              "Permutations and Combinations",
+              "Probability",
+              "Statistics – Mean, Variance",
+              "Progressions – Infinite Series",
+              "Matrices and Determinants Basics",
+              "Game Theory Basics",
+              "Coordinate Geometry – Conics"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,301 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ========= ENUMS =========
+enum QuestionType {
+  MCQ
+  INTEGER
+  MULTI_CORRECT
+  MATRIX_MATCH
+  SUBJECTIVE
+}
+
+enum SubscriptionPlan {
+  FREE
+  PRO
+  ELITE
+}
+
+enum AttemptStatus {
+  IN_PROGRESS
+  SUBMITTED
+  TIMED_OUT
+  ABANDONED
+}
+
+// ========= PLATFORM CORE =========
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          String    @default("USER") // USER or ADMIN
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  subscriptions Subscription[]
+  payments      Payment[]
+  attempts      Attempt[]
+  bookmarks     Bookmark[]
+  notes         Note[]
+}
+
+model Subscription {
+  id        String           @id @default(cuid())
+  userId    String
+  plan      SubscriptionPlan @default(FREE)
+  startDate DateTime         @default(now())
+  endDate   DateTime?
+  isActive  Boolean          @default(true)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Payment {
+  id               String   @id @default(cuid())
+  userId           String
+  orderId          String   @unique
+  amount           Float
+  currency         String   @default("INR")
+  status           String   @default("PENDING") // PENDING, PAID, FAILED
+  paymentSessionId String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([orderId])
+}
+
+model AdminLog {
+  id         String   @id @default(cuid())
+  adminId    String
+  action     String
+  entityId   String?
+  entityType String?
+  details    String?
+  createdAt  DateTime @default(now())
+}
+
+// ========= TAXONOMY =========
+model Exam {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  subjects Subject[]
+  tests    Test[]
+}
+
+model Subject {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String
+  examId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  exam     Exam      @relation(fields: [examId], references: [id], onDelete: Cascade)
+  chapters Chapter[]
+
+  @@unique([examId, slug])
+  @@index([examId])
+}
+
+model Chapter {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String
+  subjectId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subject   Subject    @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  topics    Topic[]
+  questions Question[]
+
+  @@unique([subjectId, slug])
+  @@index([subjectId])
+}
+
+model Topic {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String
+  chapterId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  chapter   Chapter    @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  questions Question[]
+
+  @@unique([chapterId, slug])
+  @@index([chapterId])
+}
+
+// ========= CONTENT =========
+model Question {
+  id         String       @id @default(cuid())
+  text       String
+  type       QuestionType @default(MCQ)
+  difficulty String       @default("MEDIUM") // EASY, MEDIUM, HARD
+  isPYQ      Boolean      @default(true)
+  examYear   Int?
+  examShift  String?
+  chapterId  String
+  topicId    String?
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  chapter Chapter @relation(fields: [chapterId], references: [id])
+  topic   Topic?  @relation(fields: [topicId], references: [id])
+
+  options       Option[]
+  explanation   Explanation?
+  testQuestions TestQuestion[]
+  responses     Response[]
+  bookmarks     Bookmark[]
+  notes         Note[]
+
+  @@index([chapterId])
+  @@index([topicId])
+  @@index([difficulty])
+  @@index([isPYQ])
+  @@index([examYear])
+}
+
+model Option {
+  id         String  @id @default(cuid())
+  questionId String
+  text       String
+  isCorrect  Boolean @default(false)
+
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@index([questionId])
+}
+
+model Explanation {
+  id         String  @id @default(cuid())
+  questionId String  @unique
+  text       String
+  videoUrl   String?
+
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+// ========= TESTING ENGINE =========
+model Test {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String?
+  examId      String
+  duration    Int      @default(180) // in minutes
+  totalMarks  Int      @default(300)
+  isPublic    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  exam Exam @relation(fields: [examId], references: [id])
+
+  testQuestions TestQuestion[]
+  attempts      Attempt[]
+
+  @@index([examId])
+}
+
+model TestQuestion {
+  id         String @id @default(cuid())
+  testId     String
+  questionId String
+  order      Int    @default(0)
+  marks      Int    @default(4)
+  negative   Int    @default(1)
+
+  test     Test     @relation(fields: [testId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([testId, questionId])
+  @@index([testId])
+  @@index([questionId])
+}
+
+model Attempt {
+  id        String        @id @default(cuid())
+  userId    String
+  testId    String
+  status    AttemptStatus @default(IN_PROGRESS)
+  startTime DateTime      @default(now())
+  endTime   DateTime?
+  score     Float?
+  rank      Int?
+
+  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  test     Test       @relation(fields: [testId], references: [id], onDelete: Cascade)
+  responses Response[]
+
+  @@index([userId])
+  @@index([testId])
+}
+
+model Response {
+  id           String   @id @default(cuid())
+  attemptId    String
+  questionId   String
+  selectedText String? // For subjective/integer or joined selected option IDs
+  isCorrect    Boolean? // Populated on submission
+  marksAwarded Float    @default(0)
+  timeSpent    Int      @default(0) // seconds
+
+  attempt  Attempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([attemptId, questionId])
+  @@index([attemptId])
+  @@index([questionId])
+}
+
+model Bookmark {
+  id         String   @id @default(cuid())
+  userId     String
+  questionId String
+  createdAt  DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questionId])
+  @@index([userId])
+  @@index([questionId])
+}
+
+model Note {
+  id         String   @id @default(cuid())
+  userId     String
+  questionId String
+  content    String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questionId])
+  @@index([userId])
+  @@index([questionId])
+}

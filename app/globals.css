@@ -1,26 +1,99 @@
 @import "tailwindcss";
+@import "katex/dist/katex.min.css";
 
+/* ── DESIGN TOKENS ─────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg:      #09090e;
+  --bg2:     #0f0f18;
+  --bg3:     #16161f;
+  --border:  #1e1e2e;
+  --border2: #2a2a3e;
+  --text:    #e2e2f0;
+  --muted:   #5a5a78;
+  --accent:  #6d56fa;
+  --accent2: #8b73ff;
+  --green:   #22d48a;
+  --orange:  #f97316;
+  --red:     #f43f5e;
+  --yellow:  #fbbf24;
+  --blue:    #38bdf8;
+  --pink:    #e879f9;
 }
 
+/* ── TAILWIND v4 THEME MAPPING ─────────────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg:      var(--bg);
+  --color-bg2:     var(--bg2);
+  --color-bg3:     var(--bg3);
+  --color-border:  var(--border);
+  --color-border2: var(--border2);
+  --color-text:    var(--text);
+  --color-muted:   var(--muted);
+  --color-accent:  var(--accent);
+  --color-accent2: var(--accent2);
+  --color-green:   var(--green);
+  --color-orange:  var(--orange);
+  --color-red:     var(--red);
+  --color-yellow:  var(--yellow);
+  --color-blue:    var(--blue);
+  --color-pink:    var(--pink);
+  --font-sans: var(--font-bricolage);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* ── BASE ──────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* ── BACKGROUNDS ───────────────────────────────────────────────────── */
+.grid-bg {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.dot-grid-bg {
+  background-image: radial-gradient(rgba(109, 86, 250, 0.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ── GLOW / EFFECTS ────────────────────────────────────────────────── */
+.hero-glow {
+  background: radial-gradient(ellipse 70% 60% at 50% -10%, rgba(109, 86, 250, 0.22), transparent 70%);
+}
+
+.accent-glow {
+  box-shadow: 0 0 40px rgba(109, 86, 250, 0.4), 0 0 80px rgba(109, 86, 250, 0.15);
+}
+
+.card-hover {
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.card-hover:hover {
+  border-color: rgba(109, 86, 250, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(109, 86, 250, 0.12);
+}
+
+/* ── GRADIENT TEXT ─────────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent2) 0%, var(--pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── SCROLLBAR ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* ── KATEX ─────────────────────────────────────────────────────────── */
+.katex { font-size: 1em !important; color: var(--text); }
+.katex-display { overflow-x: auto; }

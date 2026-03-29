@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx next:*)",
+      "Bash(node -e \"const k = require\\(''''katex''''\\); console.log\\(k.renderToString\\(''''E=mc^2''''\\).substring\\(0,80\\)\\)\")",
+      "Bash(node -e \"const {PrismaClient} = require\\(''@prisma/client''\\); console.log\\(Object.keys\\(PrismaClient.prototype\\).filter\\(k=>!k.startsWith\\(''_''\\)\\).slice\\(0,8\\)\\)\")",
+      "Bash(node -e \"const k = require\\(''katex''\\); console.log\\(''katex ok''\\)\")"
+    ]
+  }
+}

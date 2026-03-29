@@ -1,0 +1,2818 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PYQ Platform — Dev Plan & Agent Prompts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,700;12..96,800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #09090e;
+            --bg2: #0f0f18;
+            --bg3: #16161f;
+            --border: #1e1e2e;
+            --border2: #2a2a3e;
+            --text: #e2e2f0;
+            --muted: #5a5a78;
+            --accent: #6d56fa;
+            --accent2: #8b73ff;
+            --green: #22d48a;
+            --orange: #f97316;
+            --red: #f43f5e;
+            --yellow: #fbbf24;
+            --blue: #38bdf8;
+            --pink: #e879f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Bricolage Grotesque', sans-serif;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* Animated grid */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(109, 86, 250, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(109, 86, 250, 0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        /* ─── HEADER ─── */
+        .header {
+            padding: 56px 0 48px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--muted);
+            font-family: 'Fira Code', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.3
+            }
+        }
+
+        .version-badge {
+            background: rgba(109, 86, 250, 0.12);
+            border: 1px solid rgba(109, 86, 250, 0.25);
+            color: var(--accent2);
+            font-size: 11px;
+            font-family: 'Fira Code', monospace;
+            padding: 4px 12px;
+            border-radius: 100px;
+        }
+
+        .header h1 {
+            font-size: clamp(38px, 6vw, 68px);
+            font-weight: 800;
+            letter-spacing: -2.5px;
+            line-height: 1.0;
+        }
+
+        .header h1 .highlight {
+            color: var(--accent2);
+        }
+
+        .header h1 .dim {
+            color: var(--muted);
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            padding-top: 8px;
+        }
+
+        .meta-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .meta-chip .val {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ─── SECTION ─── */
+        .section {
+            padding: 56px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-label {
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .section-title {
+            font-size: clamp(24px, 4vw, 38px);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 28px;
+            line-height: 1.1;
+        }
+
+        /* ─── ENV FILE ─── */
+        .env-box {
+            background: var(--bg3);
+            border: 1px solid var(--border2);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .env-header {
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .env-filename {
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-r {
+            background: #f43f5e;
+        }
+
+        .dot-y {
+            background: #fbbf24;
+        }
+
+        .dot-g {
+            background: #22d48a;
+        }
+
+        .env-body {
+            padding: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 12.5px;
+            line-height: 2;
+            overflow-x: auto;
+        }
+
+        .env-body .comment {
+            color: var(--muted);
+        }
+
+        .env-body .key {
+            color: var(--blue);
+        }
+
+        .env-body .val {
+            color: var(--green);
+        }
+
+        .env-body .section-comment {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* ─── SETUP STEPS ─── */
+        .setup-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .step {
+            background: var(--bg3);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .step:hover {
+            border-color: rgba(109, 86, 250, 0.4);
+        }
+
+        .step-header {
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+        }
+
+        .step-num {
+            width: 28px;
+            height: 28px;
+            background: rgba(109, 86, 250, 0.15);
+            border: 1px solid rgba(109, 86, 250, 0.3);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+            color: var(--accent2);
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            font-size: 15px;
+            font-weight: 700;
+            flex: 1;
+        }
+
+        .step-time {
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            color: var(--muted);
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            padding: 3px 8px;
+            border-radius: 5px;
+        }
+
+        .step-body {
+            border-top: 1px solid var(--border);
+            padding: 16px 18px;
+            display: none;
+        }
+
+        .step.open .step-body {
+            display: block;
+        }
+
+        .step-body p {
+            font-size: 14px;
+            color: #9090b0;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .code-block {
+            background: var(--bg);
+            border: 1px solid var(--border2);
+            border-radius: 9px;
+            padding: 14px 16px;
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+            line-height: 1.8;
+            overflow-x: auto;
+            color: #c0c0e0;
+            margin-top: 8px;
+        }
+
+        .code-block .cmd {
+            color: var(--green);
+        }
+
+        .code-block .comment {
+            color: var(--muted);
+        }
+
+        .code-block .str {
+            color: var(--yellow);
+        }
+
+        .code-block .kw {
+            color: var(--accent2);
+        }
+
+        .code-block .fn {
+            color: var(--blue);
+        }
+
+        .code-block .type {
+            color: var(--orange);
+        }
+
+        /* ─── AGENT CARDS ─── */
+        .agents-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .agent-card {
+            background: var(--bg2);
+            border: 1px solid var(--border2);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .agent-card:hover {
+            border-color: var(--border2);
+        }
+
+        .agent-card.active {
+            border-color: rgba(109, 86, 250, 0.5);
+        }
+
+        .agent-header {
+            padding: 20px 22px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            cursor: pointer;
+        }
+
+        .agent-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .agent-info {
+            flex: 1;
+        }
+
+        .agent-num {
+            font-family: 'Fira Code', monospace;
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .agent-title {
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .agent-desc {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .agent-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .tag {
+            font-size: 10px;
+            font-family: 'Fira Code', monospace;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .tag-file {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--blue);
+        }
+
+        .tag-api {
+            background: rgba(34, 212, 138, 0.1);
+            color: var(--green);
+        }
+
+        .tag-ui {
+            background: rgba(232, 121, 249, 0.1);
+            color: var(--pink);
+        }
+
+        .tag-db {
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--orange);
+        }
+
+        .tag-ai {
+            background: rgba(109, 86, 250, 0.15);
+            color: var(--accent2);
+        }
+
+        .tag-pay {
+            background: rgba(251, 191, 36, 0.1);
+            color: var(--yellow);
+        }
+
+        .chevron {
+            color: var(--muted);
+            font-size: 18px;
+            transition: transform 0.2s;
+            margin-top: 4px;
+        }
+
+        .agent-card.open .chevron {
+            transform: rotate(180deg);
+        }
+
+        .agent-body {
+            border-top: 1px solid var(--border);
+            display: none;
+        }
+
+        .agent-card.open .agent-body {
+            display: block;
+        }
+
+        /* Tabs inside agent */
+        .agent-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+        }
+
+        .atab {
+            padding: 12px 18px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--muted);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.15s;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .atab.active {
+            color: var(--accent2);
+            border-bottom-color: var(--accent);
+        }
+
+        .atab-content {
+            display: none;
+            padding: 20px 22px;
+        }
+
+        .atab-content.active {
+            display: block;
+        }
+
+        /* Prompt box */
+        .prompt-box {
+            background: var(--bg);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 13.5px;
+            line-height: 1.8;
+            color: #b0b0cc;
+            position: relative;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .prompt-box .ph {
+            color: var(--accent2);
+            font-weight: 700;
+        }
+
+        /* placeholder */
+        .prompt-box .em {
+            color: var(--green);
+        }
+
+        /* emphasis */
+        .prompt-box .hl {
+            color: var(--yellow);
+        }
+
+        /* highlight */
+        .prompt-box .code {
+            color: var(--orange);
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+            background: rgba(249, 115, 22, 0.08);
+            padding: 1px 5px;
+            border-radius: 4px;
+        }
+
+        .copy-prompt {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(109, 86, 250, 0.15);
+            border: 1px solid rgba(109, 86, 250, 0.3);
+            border-radius: 6px;
+            padding: 5px 10px;
+            font-size: 11px;
+            font-family: 'Fira Code', monospace;
+            color: var(--accent2);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .copy-prompt:hover {
+            background: rgba(109, 86, 250, 0.25);
+        }
+
+        .copy-prompt.ok {
+            color: var(--green);
+            border-color: rgba(34, 212, 138, 0.3);
+        }
+
+        /* Deliverables */
+        .deliverables {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .deliverable {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: #9090b0;
+            padding: 10px 12px;
+            background: var(--bg3);
+            border-radius: 8px;
+        }
+
+        .deliverable .dicon {
+            font-size: 15px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .deliverable .dname {
+            font-weight: 600;
+            color: var(--text);
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+        }
+
+        .deliverable .ddesc {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* Dependency badges */
+        .dep-grid {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .dep-badge {
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: var(--bg3);
+            border: 1px solid var(--border2);
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dep-badge .arrow {
+            color: var(--accent);
+        }
+
+        /* ─── CASHFREE SECTION ─── */
+        .cf-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-bottom: 24px;
+        }
+
+        .cf-step {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .cf-step:last-child {
+            border-bottom: none;
+        }
+
+        .cf-arrow {
+            width: 32px;
+            height: 32px;
+            background: rgba(109, 86, 250, 0.1);
+            border: 1px solid rgba(109, 86, 250, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .cf-content h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .cf-content p {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .cf-content code {
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            color: var(--green);
+            background: rgba(34, 212, 138, 0.08);
+            padding: 1px 6px;
+            border-radius: 4px;
+        }
+
+        /* ─── TIMELINE ─── */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border: 1px solid var(--border2);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+
+        .tphase {
+            padding: 22px 18px;
+            border-right: 1px solid var(--border2);
+            background: var(--bg2);
+            position: relative;
+        }
+
+        .tphase:last-child {
+            border-right: none;
+        }
+
+        .tphase:first-child {
+            background: linear-gradient(135deg, rgba(109, 86, 250, 0.08), var(--bg2));
+        }
+
+        .tphase-week {
+            font-family: 'Fira Code', monospace;
+            font-size: 10px;
+            color: var(--accent);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .tphase-title {
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .tphase-tasks {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .tphase-tasks li {
+            font-size: 12px;
+            color: var(--muted);
+            display: flex;
+            gap: 6px;
+            line-height: 1.4;
+        }
+
+        .tphase-tasks li::before {
+            content: '·';
+            color: var(--accent2);
+            font-size: 18px;
+            line-height: 1.0;
+            flex-shrink: 0;
+        }
+
+        /* ─── FOLDER TREE ─── */
+        .tree {
+            font-family: 'Fira Code', monospace;
+            font-size: 12.5px;
+            line-height: 2;
+            background: var(--bg3);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            padding: 20px 22px;
+            color: #9090b0;
+            margin-bottom: 24px;
+        }
+
+        .tree .folder {
+            color: var(--blue);
+            font-weight: 500;
+        }
+
+        .tree .file {
+            color: #7a7a9a;
+        }
+
+        .tree .comment {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .tree .important {
+            color: var(--green);
+        }
+
+        .tree .agent-ref {
+            color: var(--accent2);
+            font-size: 11px;
+        }
+
+        /* ─── SUMMARY TABLE ─── */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-bottom: 28px;
+        }
+
+        .summary-table th {
+            font-family: 'Fira Code', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-align: left;
+            padding: 12px 14px;
+            background: var(--bg3);
+            border-bottom: 1px solid var(--border2);
+        }
+
+        .summary-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        .summary-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .summary-table tr:hover td {
+            background: var(--bg3);
+        }
+
+        .status-dot {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .sd {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .sd-green {
+            background: var(--green);
+        }
+
+        .sd-yellow {
+            background: var(--yellow);
+        }
+
+        .sd-red {
+            background: var(--red);
+        }
+
+        .sd-blue {
+            background: var(--blue);
+        }
+
+        /* ─── CALLOUT ─── */
+        .callout {
+            border: 1px solid rgba(109, 86, 250, 0.25);
+            background: rgba(109, 86, 250, 0.06);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 14px;
+        }
+
+        .callout-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .callout-content h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--accent2);
+        }
+
+        .callout-content p {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .callout-content code {
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            color: var(--orange);
+            background: rgba(249, 115, 22, 0.1);
+            padding: 1px 5px;
+            border-radius: 4px;
+        }
+
+        .callout.warn {
+            border-color: rgba(251, 191, 36, 0.25);
+            background: rgba(251, 191, 36, 0.05);
+        }
+
+        .callout.warn .callout-content h4 {
+            color: var(--yellow);
+        }
+
+        @media (max-width:640px) {
+            .timeline-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .header-meta {
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- ─── HEADER ─── -->
+        <div class="header">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-dot"></div>
+                    pyq-platform / dev-plan.md
+                </div>
+                <div class="version-badge">v1.0 — All Exams, No Mobile</div>
+            </div>
+            <h1>Complete Development Plan<br><span class="highlight">+ 12 AI Agents</span> <span class="dim">to build
+                    it</span></h1>
+            <div class="header-meta">
+                <div class="meta-chip">Stack: <span class="val">Next.js 15 · PostgreSQL · Prisma · Cashfree</span></div>
+                <div class="meta-chip">Timeline: <span class="val">12 Weeks MVP</span></div>
+                <div class="meta-chip">Agents: <span class="val">12 Specialized Claude Agents</span></div>
+            </div>
+        </div>
+
+        <!-- ─── SECTION 1: ENV + SETUP ─── -->
+        <div class="section">
+            <div class="section-label">01 — Project Setup</div>
+            <h2 class="section-title">Day 0: Init, ENV & Folder Structure</h2>
+
+            <div class="env-box">
+                <div class="env-header">
+                    <div class="env-filename">
+                        <div class="dot dot-r"></div>
+                        <div class="dot dot-y"></div>
+                        <div class="dot dot-g"></div>
+                        .env.local
+                    </div>
+                </div>
+                <div class="env-body">
+                    <span class="section-comment"># ── DATABASE ──────────────────────────</span>
+                    <span class="key">DATABASE_URL</span>=<span
+                        class="val">"postgresql://user:pass@db.supabase.co:5432/postgres"</span>
+                    <span class="key">DIRECT_URL</span>=<span
+                        class="val">"postgresql://user:pass@db.supabase.co:5432/postgres"</span>
+
+                    <span class="section-comment"># ── AUTH ──────────────────────────────</span>
+                    <span class="key">NEXTAUTH_SECRET</span>=<span class="val">"your-32-char-secret-here"</span>
+                    <span class="key">NEXTAUTH_URL</span>=<span class="val">"http://localhost:3000"</span>
+                    <span class="key">GOOGLE_CLIENT_ID</span>=<span class="val">"xxx.apps.googleusercontent.com"</span>
+                    <span class="key">GOOGLE_CLIENT_SECRET</span>=<span class="val">"xxx"</span>
+
+                    <span class="section-comment"># ── CASHFREE ──────────────────────────</span>
+                    <span class="key">CASHFREE_APP_ID</span>=<span class="val">"your_cashfree_app_id"</span>
+                    <span class="key">CASHFREE_SECRET_KEY</span>=<span class="val">"your_cashfree_secret_key"</span>
+                    <span class="key">CASHFREE_ENV</span>=<span class="val">"sandbox"</span> <span class="comment">#
+                        change to "production" for live</span>
+                    <span class="key">NEXT_PUBLIC_CASHFREE_ENV</span>=<span class="val">"sandbox"</span>
+
+                    <span class="section-comment"># ── AI APIS ───────────────────────────</span>
+                    <span class="key">ANTHROPIC_API_KEY</span>=<span class="val">"sk-ant-api03-xxx"</span>
+                    <span class="key">OPENAI_API_KEY</span>=<span class="val">"sk-xxx"</span>
+
+                    <span class="section-comment"># ── STORAGE ───────────────────────────</span>
+                    <span class="key">CLOUDFLARE_R2_ACCOUNT_ID</span>=<span class="val">"xxx"</span>
+                    <span class="key">CLOUDFLARE_R2_ACCESS_KEY</span>=<span class="val">"xxx"</span>
+                    <span class="key">CLOUDFLARE_R2_SECRET_KEY</span>=<span class="val">"xxx"</span>
+                    <span class="key">CLOUDFLARE_R2_BUCKET</span>=<span class="val">"pyq-platform"</span>
+                    <span class="key">NEXT_PUBLIC_CDN_URL</span>=<span class="val">"https://cdn.yourdomain.com"</span>
+
+                    <span class="section-comment"># ── EMAIL ─────────────────────────────</span>
+                    <span class="key">RESEND_API_KEY</span>=<span class="val">"re_xxx"</span>
+                    <span class="key">EMAIL_FROM</span>=<span class="val">"noreply@yourdomain.com"</span>
+
+                    <span class="section-comment"># ── REDIS (Upstash) ───────────────────</span>
+                    <span class="key">UPSTASH_REDIS_REST_URL</span>=<span class="val">"https://xxx.upstash.io"</span>
+                    <span class="key">UPSTASH_REDIS_REST_TOKEN</span>=<span class="val">"xxx"</span>
+
+                    <span class="section-comment"># ── APP ───────────────────────────────</span>
+                    <span class="key">NEXT_PUBLIC_APP_URL</span>=<span class="val">"http://localhost:3000"</span>
+                    <span class="key">CRON_SECRET</span>=<span class="val">"your-cron-secret"</span>
+                    <span class="key">ADMIN_EMAILS</span>=<span class="val">"admin@yourdomain.com"</span>
+                </div>
+            </div>
+
+            <div class="tree">
+                <span class="folder">pyq-platform/</span>
+                ├── <span class="folder">app/</span>
+                │ ├── <span class="folder">(public)/</span> <span class="comment">← no auth needed</span>
+                │ │ ├── <span class="folder">page.tsx</span> <span class="agent-ref">← Agent 02 (Landing)</span>
+                │ │ ├── <span class="folder">exams/</span>
+                │ │ │ ├── page.tsx <span class="agent-ref">← Agent 02</span>
+                │ │ │ └── [slug]/page.tsx
+                │ │ ├── <span class="folder">pyq/</span>
+                │ │ │ └── [exam]/
+                │ │ │ ├── page.tsx <span class="agent-ref">← Agent 03 (PYQ Browser)</span>
+                │ │ │ └── [chapter]/page.tsx
+                │ │ ├── <span class="folder">pricing/page.tsx</span> <span class="agent-ref">← Agent 09
+                    (Payments)</span>
+                │ │ └── <span class="folder">blog/page.tsx</span>
+                │ ├── <span class="folder">(auth)/</span> <span class="comment">← protected routes</span>
+                │ │ ├── dashboard/page.tsx <span class="agent-ref">← Agent 05 (Dashboard)</span>
+                │ │ ├── <span class="folder">test/</span>
+                │ │ │ ├── [id]/page.tsx <span class="agent-ref">← Agent 06 (Test Engine)</span>
+                │ │ │ └── [id]/result/page.tsx <span class="agent-ref">← Agent 07 (Analytics)</span>
+                │ │ ├── practice/page.tsx
+                │ │ ├── bookmarks/page.tsx
+                │ │ ├── revision/page.tsx
+                │ │ ├── analytics/page.tsx <span class="agent-ref">← Agent 07</span>
+                │ │ ├── custom-test/page.tsx
+                │ │ └── profile/page.tsx
+                │ ├── <span class="folder">(admin)/</span>
+                │ │ ├── admin/page.tsx <span class="agent-ref">← Agent 10 (Admin)</span>
+                │ │ ├── admin/questions/page.tsx
+                │ │ ├── admin/tests/page.tsx
+                │ │ ├── admin/seeder/page.tsx <span class="agent-ref">← Agent 11 (Seeder)</span>
+                │ │ └── admin/users/page.tsx
+                │ └── <span class="folder">api/v1/</span>
+                │ ├── exams/route.ts <span class="agent-ref">← Agent 04 (APIs)</span>
+                │ ├── questions/route.ts
+                │ ├── tests/route.ts
+                │ ├── attempts/route.ts
+                │ ├── payments/route.ts <span class="agent-ref">← Agent 09 (Cashfree)</span>
+                │ ├── ai/explain/route.ts <span class="agent-ref">← Agent 08 (AI)</span>
+                │ └── admin/seed/route.ts <span class="agent-ref">← Agent 11</span>
+                ├── <span class="folder">prisma/</span>
+                │ ├── schema.prisma <span class="agent-ref">← Agent 01 (DB)</span>
+                │ └── seed.ts
+                ├── <span class="folder">seeds/</span>
+                │ ├── exams.json <span class="agent-ref">← Agent 01</span>
+                │ ├── pyq-jee.json
+                │ ├── pyq-neet.json
+                │ └── pyq-gate.json
+                ├── <span class="folder">scripts/</span>
+                │ ├── ai-seed.js <span class="agent-ref">← Agent 11</span>
+                │ └── import-excel.js <span class="agent-ref">← Agent 11</span>
+                ├── <span class="folder">components/</span>
+                │ ├── <span class="folder">ui/</span> <span class="comment">← shadcn/ui</span>
+                │ ├── <span class="folder">exam/</span>
+                │ │ ├── QuestionCard.tsx <span class="agent-ref">← Agent 03</span>
+                │ │ ├── LatexRenderer.tsx <span class="agent-ref">← Agent 03</span>
+                │ │ └── OptionButton.tsx
+                │ ├── <span class="folder">test/</span>
+                │ │ ├── TestTimer.tsx <span class="agent-ref">← Agent 06</span>
+                │ │ ├── QuestionPanel.tsx
+                │ │ └── SubmitModal.tsx
+                │ └── <span class="folder">admin/</span>
+                │ ├── QuestionEditor.tsx <span class="agent-ref">← Agent 10</span>
+                │ └── SeedPanel.tsx <span class="agent-ref">← Agent 11</span>
+                ├── <span class="folder">lib/</span>
+                │ ├── auth.ts
+                │ ├── db.ts <span class="comment">← Prisma client singleton</span>
+                │ ├── cashfree.ts <span class="agent-ref">← Agent 09</span>
+                │ ├── katex.ts
+                │ └── redis.ts
+                └── <span class="important">middleware.ts</span> <span class="comment">← route protection</span>
+            </div>
+        </div>
+
+        <!-- ─── SECTION 2: CASHFREE ─── -->
+        <div class="section">
+            <div class="section-label">02 — Payments</div>
+            <h2 class="section-title">Cashfree Integration Flow</h2>
+
+            <div class="cf-flow">
+                <div class="cf-step">
+                    <div class="cf-arrow">1️⃣</div>
+                    <div class="cf-content">
+                        <h4>User clicks "Upgrade to Pro" on pricing page</h4>
+                        <p>Frontend calls <code>POST /api/v1/payments/create-order</code> with plan, amount, user
+                            details. Backend uses <code>cashfree-pg</code> npm package to call Cashfree's
+                            <code>PGCreateOrder</code> API.
+                        </p>
+                    </div>
+                </div>
+                <div class="cf-step">
+                    <div class="cf-arrow">2️⃣</div>
+                    <div class="cf-content">
+                        <h4>Backend creates Cashfree order → returns payment_session_id</h4>
+                        <p>Order stored in DB as <code>PENDING</code>. Response returns <code>payment_session_id</code>
+                            to frontend. Also stores <code>cf_order_id</code> in your DB for webhook matching.</p>
+                    </div>
+                </div>
+                <div class="cf-step">
+                    <div class="cf-arrow">3️⃣</div>
+                    <div class="cf-content">
+                        <h4>Frontend opens Cashfree checkout using JS SDK</h4>
+                        <p>Load <code>@cashfreepayments/cashfree-js</code>. Call
+                            <code>cashfree.checkout({ paymentSessionId })</code>. User pays via UPI / Card / NetBanking.
+                            Cashfree redirects to <code>return_url</code> after payment.
+                        </p>
+                    </div>
+                </div>
+                <div class="cf-step">
+                    <div class="cf-arrow">4️⃣</div>
+                    <div class="cf-content">
+                        <h4>User returns to /payment/verify?order_id=xxx</h4>
+                        <p>Page calls <code>POST /api/v1/payments/verify</code> with <code>order_id</code>. Backend
+                            verifies with Cashfree's <code>PGFetchOrder</code> API. If
+                            <code>order_status === "PAID"</code> → upgrade subscription in DB.
+                        </p>
+                    </div>
+                </div>
+                <div class="cf-step">
+                    <div class="cf-arrow">5️⃣</div>
+                    <div class="cf-content">
+                        <h4>Webhook at POST /api/v1/payments/webhook (backup)</h4>
+                        <p>Cashfree sends webhook for every payment event. Verify signature with
+                            <code>x-webhook-signature</code> header. Update order status as source of truth. Never trust
+                            only return_url redirect.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <span class="comment">// lib/cashfree.ts</span>
+                <span class="kw">import</span> { Cashfree } <span class="kw">from</span> <span
+                    class="str">"cashfree-pg"</span>
+
+                Cashfree.XClientId = process.env.CASHFREE_APP_ID!
+                Cashfree.XClientSecret = process.env.CASHFREE_SECRET_KEY!
+                Cashfree.XEnvironment = process.env.CASHFREE_ENV === <span class="str">"production"</span>
+                ? Cashfree.Environment.PRODUCTION
+                : Cashfree.Environment.SANDBOX
+
+                <span class="kw">export async function</span> <span class="fn">createCashfreeOrder</span>(params: {
+                orderId: string; amount: number; userId: string; phone: string; email: string
+                }) {
+                <span class="kw">const</span> response = <span class="kw">await</span> Cashfree.<span
+                    class="fn">PGCreateOrder</span>(<span class="str">"2023-08-01"</span>, {
+                order_id: params.orderId,
+                order_amount: params.amount,
+                order_currency: <span class="str">"INR"</span>,
+                customer_details: {
+                customer_id: params.userId,
+                customer_phone: params.phone,
+                customer_email: params.email,
+                },
+                order_meta: {
+                return_url: <span
+                    class="str">`${process.env.NEXT_PUBLIC_APP_URL}/payment/verify?order_id={order_id}`</span>
+                }
+                })
+                <span class="kw">return</span> response.data
+                }
+
+                <span class="kw">export async function</span> <span class="fn">verifyCashfreeOrder</span>(orderId:
+                string) {
+                <span class="kw">const</span> response = <span class="kw">await</span> Cashfree.<span
+                    class="fn">PGFetchOrder</span>(<span class="str">"2023-08-01"</span>, orderId)
+                <span class="kw">return</span> response.data.order_status <span class="comment">// "PAID" | "PENDING" |
+                    "FAILED"</span>
+                }
+            </div>
+        </div>
+
+        <!-- ─── SECTION 3: TIMELINE ─── -->
+        <div class="section">
+            <div class="section-label">03 — Timeline</div>
+            <h2 class="section-title">12-Week Build Schedule</h2>
+
+            <div class="timeline-grid">
+                <div class="tphase">
+                    <div class="tphase-week">Weeks 1–2</div>
+                    <div class="tphase-title">Foundation</div>
+                    <ul class="tphase-tasks">
+                        <li>Next.js setup + Supabase</li>
+                        <li>Prisma schema + migrations</li>
+                        <li>NextAuth (Google + creds)</li>
+                        <li>Taxonomy seed (all exams)</li>
+                        <li>Middleware + route guards</li>
+                        <li>shadcn/ui base components</li>
+                        <li>KaTeX renderer component</li>
+                    </ul>
+                </div>
+                <div class="tphase">
+                    <div class="tphase-week">Weeks 3–5</div>
+                    <div class="tphase-title">Core Pages</div>
+                    <ul class="tphase-tasks">
+                        <li>Landing + Exam pages (SEO)</li>
+                        <li>PYQ browser with filters</li>
+                        <li>Admin question editor</li>
+                        <li>Excel + AI question import</li>
+                        <li>Run AI seeder → 10K questions</li>
+                        <li>Question review queue</li>
+                        <li>API routes (questions, exams)</li>
+                    </ul>
+                </div>
+                <div class="tphase">
+                    <div class="tphase-week">Weeks 6–9</div>
+                    <div class="tphase-title">Test Engine</div>
+                    <ul class="tphase-tasks">
+                        <li>Test interface + timer</li>
+                        <li>All question types (MCQ, INT)</li>
+                        <li>Submit + scoring engine</li>
+                        <li>Result page + AIR rank</li>
+                        <li>Dashboard + analytics</li>
+                        <li>Bookmark + revision queue</li>
+                        <li>Custom test builder</li>
+                    </ul>
+                </div>
+                <div class="tphase">
+                    <div class="tphase-week">Weeks 10–12</div>
+                    <div class="tphase-title">Monetize + Launch</div>
+                    <ul class="tphase-tasks">
+                        <li>Cashfree subscription flow</li>
+                        <li>Free/Pro/Elite gating</li>
+                        <li>AI explain feature</li>
+                        <li>Leaderboard + social share</li>
+                        <li>SEO: 1000+ static pages</li>
+                        <li>Sentry + PostHog setup</li>
+                        <li>Beta launch 🚀</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="callout">
+                <div class="callout-icon">🎯</div>
+                <div class="callout-content">
+                    <h4>Agent Execution Order</h4>
+                    <p>Run agents in this order: <code>01 DB</code> → <code>02 Landing</code> → <code>03 PYQ</code> →
+                        <code>04 APIs</code> → <code>05 Dashboard</code> → <code>06 Test Engine</code> →
+                        <code>07 Analytics</code> → <code>08 AI Features</code> → <code>09 Cashfree</code> →
+                        <code>10 Admin</code> → <code>11 Seeder</code> → <code>12 SEO + Deploy</code>. Each agent's
+                        output is the next agent's input.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── SECTION 4: AGENTS ─── -->
+        <div class="section">
+            <div class="section-label">04 — AI Agents</div>
+            <h2 class="section-title">12 Agents to Build the Entire Platform</h2>
+            <p style="color:var(--muted);font-size:14px;margin-bottom:32px;max-width:600px;">Each agent is a complete
+                Claude prompt. Copy it, paste it into a new Claude conversation, and it produces working production
+                code. Click any agent to expand its prompt and deliverables.</p>
+
+            <div class="agents-grid">
+
+                <!-- AGENT 01 -->
+                <div class="agent-card" id="ag1">
+                    <div class="agent-header" onclick="toggleAgent('ag1')">
+                        <div class="agent-icon" style="background:rgba(249,115,22,0.1)">🗄️</div>
+                        <div class="agent-info">
+                            <div class="agent-num">Agent 01</div>
+                            <div class="agent-title">Database Schema & Seeder Taxonomy</div>
+                            <div class="agent-desc">Complete Prisma schema + all 9 exams with subjects, chapters, topics
+                                as JSON seed data</div>
+                            <div class="agent-tags">
+                                <span class="tag tag-db">Prisma</span>
+                                <span class="tag tag-db">PostgreSQL</span>
+                                <span class="tag tag-file">seed.ts</span>
+                                <span class="tag tag-file">exams.json</span>
+                            </div>
+                        </div>
+                        <div class="chevron">⌄</div>
+                    </div>
+                    <div class="agent-body">
+                        <div class="agent-tabs">
+                            <div class="atab active" onclick="switchTab(this,'ag1','prompt')">Prompt</div>
+                            <div class="atab" onclick="switchTab(this,'ag1','delivers')">Deliverables</div>
+                            <div class="atab" onclick="switchTab(this,'ag1','deps')">Dependencies</div>
+                        </div>
+                        <div class="atab-content active" data-agent="ag1" data-tab="prompt">
+                            <div class="prompt-box">
+                                <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+                                You are a senior full-stack engineer building a PYQ (Previous Year Questions) test
+                                series platform for Indian competitive exams.
+
+                                <em>TASK: Generate the complete Prisma schema and taxonomy seed data.</em>
+
+                                <hl>PRISMA SCHEMA REQUIREMENTS:</hl>
+                                - Models: Exam, Subject, Chapter, Topic, Question, Option, Explanation, Test,
+                                TestQuestion, Attempt, Response, Bookmark, Note, User, Subscription, Payment, AdminLog
+                                - Question types enum: MCQ, INTEGER, MULTI_CORRECT, MATRIX_MATCH, SUBJECTIVE
+                                - All models must have proper relations, indexes on frequently queried fields (examId,
+                                chapterId, year, difficulty, isPYQ)
+                                - Subscription plan enum: FREE, PRO, ELITE
+                                - AttemptStatus enum: IN_PROGRESS, SUBMITTED, TIMED_OUT, ABANDONED
+                                - Include @@index decorators for performance
+                                - Use cuid() for all IDs
+
+                                <hl>SEED DATA REQUIREMENTS (seeds/exams.json):</hl>
+                                Generate complete JSON for ALL 9 exams:
+                                1. JEE Main (Physics/Chemistry/Maths with all chapters)
+                                2. JEE Advanced (same subjects, different chapter depth)
+                                3. NEET UG (Physics/Chemistry/Biology with NCERT chapters)
+                                4. GATE CSE (all 13 core CS subjects with topics)
+                                5. GATE ECE (Electronics & Communication subjects)
+                                6. UPSC CSE (GS1, GS2, GS3, GS4, CSAT sections)
+                                7. SSC CGL (Quant, Reasoning, English, GK)
+                                8. IBPS PO (Banking Awareness, Quant, Reasoning, English)
+                                9. CAT (VARC, DILR, Quantitative Aptitude)
+
+                                Each chapter must have 5-8 topics listed.
+
+                                <hl>ALSO GENERATE:</hl>
+                                - prisma/seed.ts that reads exams.json and populates DB in correct order
+                                - lib/db.ts with Prisma client singleton (prevents connection pool exhaustion in
+                                Next.js)
+                                - package.json prisma.seed config
+
+                                <em>Output complete, production-ready code. No placeholders. Every field defined.</em>
+                            </div>
+                        </div>
+                        <div class="atab-content" data-agent="ag1" data-tab="delivers">
+                            <div class="deliverables">
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">prisma/schema.prisma</div>
+                                        <div class="ddesc">Complete schema with all 18 models, enums, indexes, and
+                                            relations</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">seeds/exams.json</div>
+                                        <div class="ddesc">All 9 exams → subjects → chapters → topics (500+ records)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">prisma/seed.ts</div>
+                                        <div class="ddesc">Idempotent seeder script that runs npx prisma db seed</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">lib/db.ts</div>
+                                        <div class="ddesc">Prisma singleton with dev/prod connection pooling</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="atab-content" data-agent="ag1" data-tab="deps">
+                            <div class="dep-grid">
+                                <div class="dep-badge"><span class="arrow">→</span> Run: npx prisma migrate dev --name
+                                    init</div>
+                                <div class="dep-badge"><span class="arrow">→</span> Run: npx prisma db seed</div>
+                                <div class="dep-badge"><span class="arrow">→</span> Supabase project must be live</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AGENT 02 -->
+                <div class="agent-card" id="ag2">
+                    <div class="agent-header" onclick="toggleAgent('ag2')">
+                        <div class="agent-icon" style="background:rgba(232,121,249,0.1)">🏠</div>
+                        <div class="agent-info">
+                            <div class="agent-num">Agent 02</div>
+                            <div class="agent-title">Landing Page + Public Marketing Pages</div>
+                            <div class="agent-desc">Hero, features, exam directory, testimonials, pricing preview, blog
+                                index — all server-side rendered for SEO</div>
+                            <div class="agent-tags">
+                                <span class="tag tag-ui">Next.js</span><span class="tag tag-ui">Tailwind</span><span
+                                    class="tag tag-ui">shadcn</span><span class="tag tag-api">SSR/SSG</span>
+                            </div>
+                        </div>
+                        <div class="chevron">⌄</div>
+                    </div>
+                    <div class="agent-body">
+                        <div class="agent-tabs">
+                            <div class="atab active" onclick="switchTab(this,'ag2','prompt')">Prompt</div>
+                            <div class="atab" onclick="switchTab(this,'ag2','delivers')">Deliverables</div>
+                        </div>
+                        <div class="atab-content active" data-agent="ag2" data-tab="prompt">
+                            <div class="prompt-box">
+                                <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+                                You are building the public-facing pages for a PYQ test series platform for Indian
+                                competitive exams (JEE, NEET, GATE, UPSC, SSC, Banking, CAT).
+
+                                <em>TASK: Build all public marketing and browsing pages using Next.js 15 App Router +
+                                    Tailwind CSS + shadcn/ui.</em>
+
+                                <hl>PAGES TO BUILD:</hl>
+
+                                1. <hl>app/(public)/page.tsx</hl> — Landing Page
+                                - Hero: "India's most complete PYQ platform" with animated stats (50,000+ questions, 9
+                                exams, 2M+ students)
+                                - Exam cards grid (9 exams with icons, question count, year range)
+                                - Feature highlights: AI explanations, LaTeX rendering, test engine, analytics
+                                - How it works: 3-step visual flow
+                                - Testimonials section (3-4 student quotes)
+                                - Pricing teaser with CTA to /pricing
+                                - Footer with links
+
+                                2. <hl>app/(public)/exams/page.tsx</hl> — Exam Directory
+                                - Filter by: Engineering / Medical / Government / MBA
+                                - Each exam card: icon, name, total PYQs, subjects, year range, "Start Practicing"
+                                button
+                                - Server component, fetches from DB
+
+                                3. <hl>app/(public)/exams/[slug]/page.tsx</hl> — Exam Detail Page
+                                - Exam overview, syllabus accordion by subject/chapter
+                                - Stats: total questions, years covered, question types
+                                - CTA: "Attempt Free Test" + "Browse PYQs"
+                                - generateStaticParams() for all exam slugs
+                                - generateMetadata() for SEO
+
+                                4. <hl>app/(public)/pricing/page.tsx</hl> — Pricing Page
+                                - 3 plans: Free (₹0) / Pro (₹299/mo or ₹1,999/yr) / Elite (₹599/mo or ₹3,999/yr)
+                                - Feature comparison table
+                                - FAQ accordion
+                                - Annual discount toggle (monthly/yearly)
+
+                                <hl>DESIGN REQUIREMENTS:</hl>
+                                - Dark theme (#09090e background) with violet accent (#6d56fa)
+                                - Use Bricolage Grotesque font
+                                - KaTeX example formulas in hero section to show math rendering
+                                - Fully responsive (mobile-first)
+                                - All pages must export generateMetadata() for SEO
+
+                                <em>Write complete, production code. Use real Prisma queries in server components.
+                                    Include loading.tsx and error.tsx for each route.</em>
+                            </div>
+                        </div>
+                        <div class="atab-content" data-agent="ag2" data-tab="delivers">
+                            <div class="deliverables">
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(public)/page.tsx</div>
+                                        <div class="ddesc">Full landing page with all sections</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(public)/exams/page.tsx</div>
+                                        <div class="ddesc">Exam directory with filters</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(public)/exams/[slug]/page.tsx</div>
+                                        <div class="ddesc">Dynamic exam pages with static generation</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(public)/pricing/page.tsx</div>
+                                        <div class="ddesc">Pricing page with plan comparison</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">components/ui/ExamCard.tsx</div>
+                                        <div class="ddesc">Reusable exam card component</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AGENT 03 -->
+                <div class="agent-card" id="ag3">
+                    <div class="agent-header" onclick="toggleAgent('ag3')">
+                        <div class="agent-icon" style="background:rgba(56,189,248,0.1)">📚</div>
+                        <div class="agent-info">
+                            <div class="agent-num">Agent 03</div>
+                            <div class="agent-title">PYQ Browser + LaTeX Question Renderer</div>
+                            <div class="agent-desc">Chapter-wise PYQ browser with full LaTeX rendering, filters, year
+                                selector, solution reveal, and bookmarking</div>
+                            <div class="agent-tags">
+                                <span class="tag tag-ui">KaTeX</span><span class="tag tag-ui">React</span><span
+                                    class="tag tag-api">SSR</span><span class="tag tag-file">QuestionCard</span>
+                            </div>
+                        </div>
+                        <div class="chevron">⌄</div>
+                    </div>
+                    <div class="agent-body">
+                        <div class="agent-tabs">
+                            <div class="atab active" onclick="switchTab(this,'ag3','prompt')">Prompt</div>
+                            <div class="atab" onclick="switchTab(this,'ag3','delivers')">Deliverables</div>
+                        </div>
+                        <div class="atab-content active" data-agent="ag3" data-tab="prompt">
+                            <div class="prompt-box">
+                                <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+                                You are building the PYQ (Previous Year Questions) browser for an Indian exam prep
+                                platform.
+
+                                <em>TASK: Build the complete PYQ browsing experience with LaTeX rendering.</em>
+
+                                <hl>COMPONENTS TO BUILD:</hl>
+
+                                1. <hl>components/exam/LatexRenderer.tsx</hl>
+                                - Parses text containing $...$ (inline) and $$...$$ (block) LaTeX
+                                - Uses KaTeX for rendering (import 'katex/dist/katex.min.css')
+                                - Handles rendering errors gracefully (falls back to raw text)
+                                - Memoized for performance (don't re-render on every keystroke)
+                                - Supports images in question text (renders img tags with CDN URLs)
+
+                                2. <hl>components/exam/QuestionCard.tsx</hl>
+                                - Shows question number, exam tag, year badge, chapter tag, difficulty chip
+                                - Renders question text through LatexRenderer
+                                - 4 option buttons (A/B/C/D) — clicking reveals correct answer
+                                - "Show Solution" button — expands explanation with LaTeX
+                                - Bookmark button (calls API, optimistic update)
+                                - "AI Explain" button (Pro feature — calls /api/v1/ai/explain)
+                                - Copy question link button
+                                - Time stamp: "Asked in JEE Main 2023 Shift 1"
+                                - Supports all question types: MCQ, INTEGER (text input), MULTI_CORRECT (multiple
+                                select)
+
+                                3. <hl>app/(public)/pyq/[exam]/page.tsx</hl> — PYQ Browser page
+                                - Left sidebar filters: Subject → Chapter → Topic → Year → Difficulty → Question Type
+                                - Questions list (infinite scroll or pagination, 20 per page)
+                                - URL-based filters (?chapter=electrostatics&year=2023&difficulty=hard)
+                                - Sort by: Year (newest first) / Difficulty / Most Attempted
+                                - Server component with Suspense for filter changes
+                                - generateStaticParams for top exam+chapter combos (SEO)
+                                - generateMetadata: "JEE Main Electrostatics PYQs 2015-2024"
+
+                                4. <hl>app/(public)/pyq/[exam]/[chapter]/page.tsx</hl>
+                                - Chapter-specific page (pure SSG for SEO)
+                                - Shows all PYQs for that chapter across all years
+                                - Grouped by topic with expandable sections
+
+                                <hl>FILTER STATE MANAGEMENT:</hl>
+                                - Use URL search params (useSearchParams + useRouter) for shareable filter URLs
+                                - Filter changes update URL, not just state (enables back button, sharing)
+
+                                <em>All components must work without auth (public browsing). Auth only needed for
+                                    bookmark/AI explain. Write complete, runnable code.</em>
+                            </div>
+                        </div>
+                        <div class="atab-content" data-agent="ag3" data-tab="delivers">
+                            <div class="deliverables">
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">components/exam/LatexRenderer.tsx</div>
+                                        <div class="ddesc">KaTeX renderer with inline/block support and error fallback
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">components/exam/QuestionCard.tsx</div>
+                                        <div class="ddesc">Full question UI with all interaction states</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(public)/pyq/[exam]/page.tsx</div>
+                                        <div class="ddesc">PYQ browser with filters, pagination</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(public)/pyq/[exam]/[chapter]/page.tsx</div>
+                                        <div class="ddesc">Static chapter pages (SEO)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AGENT 04 -->
+                <div class="agent-card" id="ag4">
+                    <div class="agent-header" onclick="toggleAgent('ag4')">
+                        <div class="agent-icon" style="background:rgba(34,212,138,0.1)">⚡</div>
+                        <div class="agent-info">
+                            <div class="agent-num">Agent 04</div>
+                            <div class="agent-title">All API Routes (REST Backend)</div>
+                            <div class="agent-desc">20 complete API routes: questions, tests, attempts, leaderboard,
+                                bookmarks, custom test, user analytics</div>
+                            <div class="agent-tags">
+                                <span class="tag tag-api">Next.js API</span><span class="tag tag-db">Prisma</span><span
+                                    class="tag tag-api">REST</span><span class="tag tag-api">Auth Guards</span>
+                            </div>
+                        </div>
+                        <div class="chevron">⌄</div>
+                    </div>
+                    <div class="agent-body">
+                        <div class="agent-tabs">
+                            <div class="atab active" onclick="switchTab(this,'ag4','prompt')">Prompt</div>
+                            <div class="atab" onclick="switchTab(this,'ag4','delivers')">Deliverables</div>
+                        </div>
+                        <div class="atab-content active" data-agent="ag4" data-tab="prompt">
+                            <div class="prompt-box">
+                                <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+                                You are building all API routes for a PYQ test series platform using Next.js 15 App
+                                Router API routes + Prisma ORM.
+
+                                <em>TASK: Write all 20 production-ready API routes with proper error handling, auth
+                                    guards, and response types.</em>
+
+                                <hl>ROUTES TO BUILD:</hl>
+
+                                <hl>Questions & Exams (Public):</hl>
+                                - GET /api/v1/exams — list all with question counts
+                                - GET /api/v1/exams/[slug] — single exam with subjects/chapters
+                                - GET /api/v1/questions — paginated list with filters: examId, chapterId, topicId, year,
+                                difficulty, isPYQ, type. Support ?page=&limit=&sort=
+                                - GET /api/v1/questions/[id] — single question WITHOUT correct answer
+                                - GET /api/v1/questions/[id]/solution — question WITH correct answer + explanation (auth
+                                required)
+
+                                <hl>Tests (Mix of public/auth):</hl>
+                                - GET /api/v1/tests — list tests by exam, type, isFree
+                                - GET /api/v1/tests/[id] — test metadata
+                                - POST /api/v1/tests/[id]/start — create Attempt, return shuffled questions WITHOUT
+                                answers (auth)
+                                - GET /api/v1/attempts/[id] — get attempt with responses (auth, own attempt only)
+                                - PUT /api/v1/attempts/[id]/response — save/update single response during test (auth)
+                                - POST /api/v1/attempts/[id]/submit — submit test, calculate score, rank (auth)
+                                - GET /api/v1/attempts/[id]/result — full result with correct answers revealed (auth)
+
+                                <hl>User Features:</hl>
+                                - GET/POST/DELETE /api/v1/bookmarks — manage bookmarks (auth)
+                                - POST /api/v1/custom-test — generate custom test from filters (auth, Pro+)
+                                - GET /api/v1/users/me — current user profile + subscription
+                                - GET /api/v1/users/me/analytics — accuracy by chapter, time data, progress over weeks
+
+                                <hl>Leaderboard:</hl>
+                                - GET /api/v1/leaderboard/[testId] — top 100 with user ranks (public)
+
+                                <hl>REQUIREMENTS:</hl>
+                                - Use NextAuth getServerSession for auth
+                                - Return consistent JSON: { success, data, error, meta }
+                                - Pagination meta: { page, limit, total, totalPages }
+                                - Rate limit AI routes with Upstash Redis (10 req/min free, 100 req/min Pro)
+                                - All routes handle 400/401/403/404/500 properly
+                                - TypeScript types for all request/response bodies
+                                - Scoring engine: handle negative marking, partial marks for MULTI_CORRECT
+                                - Rank calculation: percentile among all users who took that test
+
+                                <em>Write complete route handler code. No pseudocode. Every route fully
+                                    implemented.</em>
+                            </div>
+                        </div>
+                        <div class="atab-content" data-agent="ag4" data-tab="delivers">
+                            <div class="deliverables">
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/api/v1/questions/route.ts</div>
+                                        <div class="ddesc">Paginated questions with 8 filter params</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/api/v1/tests/[id]/start/route.ts</div>
+                                        <div class="ddesc">Creates attempt, shuffles questions</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/api/v1/attempts/[id]/submit/route.ts</div>
+                                        <div class="ddesc">Full scoring engine with rank calculation</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/api/v1/users/me/analytics/route.ts</div>
+                                        <div class="ddesc">Chapter-wise accuracy + time analytics</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">lib/scoring.ts</div>
+                                        <div class="ddesc">Scoring engine: marks, negative marks, partial marks</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AGENT 05 -->
+                <div class="agent-card" id="ag5">
+                    <div class="agent-header" onclick="toggleAgent('ag5')">
+                        <div class="agent-icon" style="background:rgba(109,86,250,0.15)">📊</div>
+                        <div class="agent-info">
+                            <div class="agent-num">Agent 05</div>
+                            <div class="agent-title">Student Dashboard</div>
+                            <div class="agent-desc">Personalized dashboard with streak, weak areas, recent tests,
+                                upcoming tests, study plan, and readiness score</div>
+                            <div class="agent-tags">
+                                <span class="tag tag-ui">React</span><span class="tag tag-ui">Charts</span><span
+                                    class="tag tag-api">Auth</span>
+                            </div>
+                        </div>
+                        <div class="chevron">⌄</div>
+                    </div>
+                    <div class="agent-body">
+                        <div class="agent-tabs">
+                            <div class="atab active" onclick="switchTab(this,'ag5','prompt')">Prompt</div>
+                            <div class="atab" onclick="switchTab(this,'ag5','delivers')">Deliverables</div>
+                        </div>
+                        <div class="atab-content active" data-agent="ag5" data-tab="prompt">
+                            <div class="prompt-box">
+                                <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+                                You are building the student dashboard for a PYQ test series platform.
+
+                                <em>TASK: Build a rich, data-driven student dashboard using Next.js 15 + Tailwind +
+                                    Recharts.</em>
+
+                                <hl>DASHBOARD SECTIONS (app/(auth)/dashboard/page.tsx):</hl>
+
+                                1. <hl>Header row:</hl> "Good morning, [Name] 👋" + current streak (🔥 12 days) + days
+                                to exam countdown
+
+                                2. <hl>Stats row (4 cards):</hl>
+                                - Tests attempted this week
+                                - Average accuracy (%)
+                                - Questions solved today
+                                - Current AIR rank (best rank achieved)
+
+                                3. <hl>Exam Readiness Widget:</hl>
+                                - Circular progress per subject (Physics 72%, Chemistry 58%, Maths 81%)
+                                - Calculated from: (correct answers / total attempted) per chapter, weighted by exam
+                                syllabus coverage
+
+                                4. <hl>Weak Areas Panel:</hl>
+                                - Top 5 weakest chapters (lowest accuracy)
+                                - Each has a "Practice Now" button → goes to chapter PYQs
+                                - Chapter name + accuracy percentage + questions attempted
+
+                                5. <hl>Recent Test History (last 5 tests):</hl>
+                                - Test name, date, score, rank, time taken
+                                - Score trend sparkline
+
+                                6. <hl>Upcoming Scheduled Tests:</hl>
+                                - Test name, date, time, exam type, free/paid badge
+                                - "Register" or "Attempt" button based on status
+
+                                7. <hl>Today's Revision Queue:</hl>
+                                - 5 questions from spaced repetition (questions got wrong in past)
+                                - Each shows subject tag + quick answer check
+
+                                8. <hl>Study Streak Calendar:</hl>
+                                - GitHub-style contribution grid for last 3 months
+                                - Each day colored by questions solved (0=gray, 1-5=light, 6-15=medium, 15+=dark)
+
+                                <hl>DATA FETCHING:</hl>
+                                - All data fetched server-side in page.tsx using Prisma directly
+                                - Parallel fetches with Promise.all for performance
+                                - Loading skeletons (loading.tsx)
+
+                                <hl>COMPONENTS TO BUILD:</hl>
+                                - components/dashboard/StatsCard.tsx
+                                - components/dashboard/ReadinessChart.tsx (Recharts RadialBarChart)
+                                - components/dashboard/WeakAreas.tsx
+                                - components/dashboard/StreakCalendar.tsx
+                                - components/dashboard/TestHistoryTable.tsx
+
+                                <em>Dark theme. Professional edtech look. Include all TypeScript types.</em>
+                            </div>
+                        </div>
+                        <div class="atab-content" data-agent="ag5" data-tab="delivers">
+                            <div class="deliverables">
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(auth)/dashboard/page.tsx</div>
+                                        <div class="ddesc">Full dashboard with parallel data fetching</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">components/dashboard/ReadinessChart.tsx</div>
+                                        <div class="ddesc">Radial bar chart per subject</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">components/dashboard/StreakCalendar.tsx</div>
+                                        <div class="ddesc">GitHub-style heatmap calendar</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">components/dashboard/WeakAreas.tsx</div>
+                                        <div class="ddesc">Top 5 weak chapters with practice CTAs</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AGENT 06 -->
+                <div class="agent-card" id="ag6">
+                    <div class="agent-header" onclick="toggleAgent('ag6')">
+                        <div class="agent-icon" style="background:rgba(244,63,94,0.1)">⏱️</div>
+                        <div class="agent-info">
+                            <div class="agent-num">Agent 06</div>
+                            <div class="agent-title">Test Engine (Full Exam Interface)</div>
+                            <div class="agent-desc">Complete NTA-style test interface: timer, question palette, mark for
+                                review, section switching, auto-save, submit flow</div>
+                            <div class="agent-tags">
+                                <span class="tag tag-ui">React</span><span class="tag tag-ui">Zustand</span><span
+                                    class="tag tag-api">WebSocket</span>
+                            </div>
+                        </div>
+                        <div class="chevron">⌄</div>
+                    </div>
+                    <div class="agent-body">
+                        <div class="agent-tabs">
+                            <div class="atab active" onclick="switchTab(this,'ag6','prompt')">Prompt</div>
+                            <div class="atab" onclick="switchTab(this,'ag6','delivers')">Deliverables</div>
+                        </div>
+                        <div class="atab-content active" data-agent="ag6" data-tab="prompt">
+                            <div class="prompt-box">
+                                <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+                                You are building the test engine for a PYQ test series platform — the core feature
+                                students interact with most.
+
+                                <em>TASK: Build a complete, NTA-style test interface that mirrors the actual JEE/NEET
+                                    exam experience.</em>
+
+                                <hl>TEST INTERFACE (app/(auth)/test/[id]/page.tsx):</hl>
+
+                                <hl>Layout (3 panels):</hl>
+                                - Left panel (320px): Question palette grid (numbered buttons, color-coded status)
+                                - Grey: not visited, White: visited not answered, Green: answered, Purple: marked for
+                                review, Orange: answered + marked
+                                - Section tabs at top (Physics / Chemistry / Maths)
+                                - Submit button at bottom
+                                - Center panel (flex): Active question display
+                                - Question number + section + marks info
+                                - Question text rendered through LatexRenderer
+                                - Option buttons for MCQ / Number input for INTEGER / Checkboxes for MULTI_CORRECT
+                                - Bottom nav: Previous, Mark for Review, Clear Response, Save & Next
+                                - Right panel (240px): Timer + candidate info + instructions toggle
+
+                                <hl>STATE MANAGEMENT (Zustand store):</hl>
+                                - useTestStore with: currentQuestion, responses (map of qId→answer), questionStatuses,
+                                timeRemaining, isSubmitted
+                                - Auto-save to API every 30 seconds (PUT /api/v1/attempts/[id]/response)
+                                - Also save on every answer change (debounced 2s)
+                                - Persist to localStorage as backup (recover if browser closes)
+
+                                <hl>TIMER:</hl>
+                                - Countdown from test.duration minutes
+                                - Persists across page refreshes (store startTime in DB, calculate remaining on mount)
+                                - Warning at 10 min remaining (yellow), 5 min (red, pulsing)
+                                - Auto-submit when timer hits 0
+
+                                <hl>SUBMIT FLOW:</hl>
+                                - "Submit" opens confirmation modal showing: answered/unanswered/marked counts per
+                                section
+                                - Confirm → POST /api/v1/attempts/[id]/submit → redirect to /test/[id]/result
+
+                                <hl>QUESTION TYPES:</hl>
+                                - MCQ: radio button options
+                                - INTEGER: number input (0-9 only, supports decimals for GATE)
+                                - MULTI_CORRECT: checkboxes (JEE Advanced style)
+                                - MATRIX_MATCH: 4×4 grid matching
+
+                                <hl>OTHER REQUIREMENTS:</hl>
+                                - Prevent right-click, text selection (exam integrity)
+                                - Fullscreen prompt on start
+                                - Handle network loss: queue responses, retry on reconnect
+                                - Responsive (works on tablet)
+
+                                <em>This is the most critical component. Write complete, production-quality code with
+                                    Zustand store, all question type handlers, timer logic, and auto-save.</em>
+                            </div>
+                        </div>
+                        <div class="atab-content" data-agent="ag6" data-tab="delivers">
+                            <div class="deliverables">
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(auth)/test/[id]/page.tsx</div>
+                                        <div class="ddesc">Full test interface page</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">store/testStore.ts</div>
+                                        <div class="ddesc">Zustand store with all test state</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">components/test/QuestionPalette.tsx</div>
+                                        <div class="ddesc">Color-coded question grid</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">components/test/TestTimer.tsx</div>
+                                        <div class="ddesc">Persistent countdown with warnings</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">components/test/SubmitModal.tsx</div>
+                                        <div class="ddesc">Confirmation modal with section summary</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AGENT 07 -->
+                <div class="agent-card" id="ag7">
+                    <div class="agent-header" onclick="toggleAgent('ag7')">
+                        <div class="agent-icon" style="background:rgba(56,189,248,0.1)">📈</div>
+                        <div class="agent-info">
+                            <div class="agent-num">Agent 07</div>
+                            <div class="agent-title">Result Page + Analytics System</div>
+                            <div class="agent-desc">Detailed test result with score breakdown, AIR rank, time analysis,
+                                question-wise review, and progress analytics pages</div>
+                            <div class="agent-tags">
+                                <span class="tag tag-ui">Recharts</span><span class="tag tag-ui">React</span><span
+                                    class="tag tag-db">Prisma</span>
+                            </div>
+                        </div>
+                        <div class="chevron">⌄</div>
+                    </div>
+                    <div class="agent-body">
+                        <div class="agent-tabs">
+                            <div class="atab active" onclick="switchTab(this,'ag7','prompt')">Prompt</div>
+                            <div class="atab" onclick="switchTab(this,'ag7','delivers')">Deliverables</div>
+                        </div>
+                        <div class="atab-content active" data-agent="ag7" data-tab="prompt">
+                            <div class="prompt-box">
+                                <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+                                You are building the result and analytics system for a PYQ test series platform.
+
+                                <em>TASK: Build test result page + full analytics pages using Recharts for
+                                    visualizations.</em>
+
+                                <hl>1. RESULT PAGE (app/(auth)/test/[id]/result/page.tsx):</hl>
+
+                                Top section — Score Hero:
+                                - Large score display: "247 / 360" with colored progress ring
+                                - Rank: "#1,234 out of 18,492 students" → "Top 6.7%"
+                                - Percentile gauge chart
+                                - Share card button (generates OG image with score for WhatsApp/Instagram)
+
+                                Section breakdown table:
+                                - Per section: attempted, correct, wrong, marks scored, accuracy%
+                                - Highlight best and worst section
+
+                                Time Analysis:
+                                - Total time used vs. available
+                                - Average time per question (correct vs wrong)
+                                - Time distribution pie chart: answered / unanswered / marked for review
+
+                                Question-wise Review:
+                                - All questions in collapsible list
+                                - Each: question text (LaTeX), your answer, correct answer, time taken, marks awarded
+                                - Filter: All / Correct / Wrong / Skipped / Marked
+                                - "AI Explain" button on wrong answers
+
+                                Comparison (Pro feature):
+                                - Your score vs. topper score vs. average score bar chart
+
+                                <hl>2. ANALYTICS PAGE (app/(auth)/analytics/page.tsx):</hl>
+                                - Score trend line chart (last 10 tests)
+                                - Accuracy by chapter heatmap
+                                - Time management scatter plot (time vs. correctness per question)
+                                - Subject-wise accuracy radar chart
+                                - Improvement rate week over week
+                                - Weakness tracker: chapters where accuracy < 50% <hl>3. SHARE CARD GENERATION:</hl>
+                                    - API route: GET /api/v1/attempts/[id]/share-card
+                                    - Returns OG image (use @vercel/og or sharp)
+                                    - Shows: score, rank, percentile, exam name, platform logo
+                                    - Sharable URL: /results/share/[attemptId]
+
+                                    <em>Include all Recharts components (LineChart, RadarChart, PieChart, BarChart).
+                                        Dark theme. Mobile responsive.</em>
+                            </div>
+                        </div>
+                        <div class="atab-content" data-agent="ag7" data-tab="delivers">
+                            <div class="deliverables">
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(auth)/test/[id]/result/page.tsx</div>
+                                        <div class="ddesc">Complete result page with all sections</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(auth)/analytics/page.tsx</div>
+                                        <div class="ddesc">Full analytics dashboard with 5 charts</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/api/v1/attempts/[id]/share-card/route.ts</div>
+                                        <div class="ddesc">OG image generation for social sharing</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AGENT 08 -->
+                <div class="agent-card" id="ag8">
+                    <div class="agent-header" onclick="toggleAgent('ag8')">
+                        <div class="agent-icon" style="background:rgba(109,86,250,0.15)">🤖</div>
+                        <div class="agent-info">
+                            <div class="agent-num">Agent 08</div>
+                            <div class="agent-title">AI Features (Explain + Hint + Similar)</div>
+                            <div class="agent-desc">AI-powered step-by-step solution explainer, hint system, similar
+                                question generator, and weak topic study plan via Claude API</div>
+                            <div class="agent-tags">
+                                <span class="tag tag-ai">Claude API</span><span class="tag tag-ai">Streaming</span><span
+                                    class="tag tag-api">Rate Limiting</span>
+                            </div>
+                        </div>
+                        <div class="chevron">⌄</div>
+                    </div>
+                    <div class="agent-body">
+                        <div class="agent-tabs">
+                            <div class="atab active" onclick="switchTab(this,'ag8','prompt')">Prompt</div>
+                            <div class="atab" onclick="switchTab(this,'ag8','delivers')">Deliverables</div>
+                        </div>
+                        <div class="atab-content active" data-agent="ag8" data-tab="prompt">
+                            <div class="prompt-box">
+                                <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+                                You are building the AI features layer for a PYQ test series platform.
+
+                                <em>TASK: Build all AI-powered features using Anthropic's Claude API with streaming
+                                    responses.</em>
+
+                                <hl>API ROUTES TO BUILD:</hl>
+
+                                1. <hl>POST /api/v1/ai/explain</hl>
+                                - Input: { questionId, style: "step_by_step" | "concise" | "intuitive" }
+                                - Fetches question + correct answer + explanation from DB
+                                - Calls Claude with: "Explain this [exam] question in [style]. Include LaTeX for all
+                                formulas. Show complete working."
+                                - Streams response back to client (ReadableStream)
+                                - Saves generated explanation to DB (cache for future requests)
+                                - Rate limit: 10/hour free, 100/hour Pro, unlimited Elite (check via Upstash Redis)
+
+                                2. <hl>POST /api/v1/ai/hint</hl>
+                                - Input: { questionId, hintLevel: 1 | 2 | 3 }
+                                - Level 1: Concept hint (what topic/formula to use)
+                                - Level 2: First step hint (how to start)
+                                - Level 3: Full approach (without final answer)
+                                - Does NOT reveal the answer
+
+                                3. <hl>POST /api/v1/ai/similar-questions</hl>
+                                - Input: { questionId, count: 3 }
+                                - Generates 3 similar questions on same topic/difficulty
+                                - Returns valid JSON with question, options, answer, explanation
+                                - Saves to DB as AI-generated questions for future use
+
+                                4. <hl>POST /api/v1/ai/study-plan</hl>
+                                - Input: { targetExam, targetDate, weakChapters[] }
+                                - Generates a week-by-week study plan
+                                - Prioritizes weak chapters, schedules revision cycles
+                                - Returns structured JSON plan
+
+                                <hl>FRONTEND COMPONENTS:</hl>
+
+                                1. <hl>components/ai/AiExplainPanel.tsx</hl>
+                                - Slide-in panel from right
+                                - Style selector: Step-by-step / Concise / Intuitive
+                                - Streaming text display with typing animation
+                                - LaTeX rendered in streamed content
+                                - Copy explanation button
+
+                                2. <hl>components/ai/HintButton.tsx</hl>
+                                - Progressive hint reveal (click to reveal next level)
+                                - Shows 💡 → 💡💡 → 💡💡💡 indicator
+
+                                <hl>RATE LIMITING (lib/rateLimit.ts):</hl>
+                                - Use Upstash Redis sliding window
+                                - Free plan: 10 AI calls/hour
+                                - Pro: 100/hour, Elite: unlimited
+                                - Return 429 with { resetIn: seconds } when exceeded
+
+                                <em>Use Anthropic SDK (@anthropic-ai/sdk). Implement streaming with ReadableStream.
+                                    Include full TypeScript types.</em>
+                            </div>
+                        </div>
+                        <div class="atab-content" data-agent="ag8" data-tab="delivers">
+                            <div class="deliverables">
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/api/v1/ai/explain/route.ts</div>
+                                        <div class="ddesc">Streaming Claude explanation with caching</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/api/v1/ai/hint/route.ts</div>
+                                        <div class="ddesc">3-level hint system</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">lib/rateLimit.ts</div>
+                                        <div class="ddesc">Upstash Redis rate limiter per plan</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">components/ai/AiExplainPanel.tsx</div>
+                                        <div class="ddesc">Streaming explanation UI with LaTeX</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AGENT 09 -->
+                <div class="agent-card" id="ag9">
+                    <div class="agent-header" onclick="toggleAgent('ag9')">
+                        <div class="agent-icon" style="background:rgba(251,191,36,0.1)">💳</div>
+                        <div class="agent-info">
+                            <div class="agent-num">Agent 09</div>
+                            <div class="agent-title">Cashfree Payments + Subscription Gating</div>
+                            <div class="agent-desc">Complete Cashfree integration: order creation, verify, webhook,
+                                subscription plans, feature gating middleware</div>
+                            <div class="agent-tags">
+                                <span class="tag tag-pay">Cashfree</span><span class="tag tag-pay">Webhook</span><span
+                                    class="tag tag-api">Middleware</span><span class="tag tag-db">Subscription</span>
+                            </div>
+                        </div>
+                        <div class="chevron">⌄</div>
+                    </div>
+                    <div class="agent-body">
+                        <div class="agent-tabs">
+                            <div class="atab active" onclick="switchTab(this,'ag9','prompt')">Prompt</div>
+                            <div class="atab" onclick="switchTab(this,'ag9','delivers')">Deliverables</div>
+                        </div>
+                        <div class="atab-content active" data-agent="ag9" data-tab="prompt">
+                            <div class="prompt-box">
+                                <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+                                You are building the payment and subscription system for a PYQ test series platform
+                                using Cashfree Payments.
+
+                                <em>TASK: Complete Cashfree integration with subscriptions, gating, and webhook
+                                    handling.</em>
+
+                                <hl>CASHFREE SETUP:</hl>
+                                - npm package: cashfree-pg
+                                - API version: 2023-08-01
+                                - Sandbox for dev, Production for live
+                                - Credentials from .env: CASHFREE_APP_ID, CASHFREE_SECRET_KEY
+
+                                <hl>API ROUTES:</hl>
+
+                                1. <hl>POST /api/v1/payments/create-order</hl>
+                                - Input: { plan: "PRO" | "ELITE", period: "monthly" | "yearly" }
+                                - Calculate amount based on plan+period
+                                - Create Cashfree order using PGCreateOrder
+                                - Store order in Payment table with status PENDING
+                                - Return: { orderId, paymentSessionId, amount }
+
+                                2. <hl>POST /api/v1/payments/verify</hl>
+                                - Input: { orderId }
+                                - Call Cashfree PGFetchOrder to get order_status
+                                - If "PAID": update Payment to SUCCESS, update User.subscription
+                                - Set subscription validTill: +30 days (monthly) or +365 days (yearly)
+                                - Return: { success, plan, validTill }
+
+                                3. <hl>POST /api/v1/payments/webhook</hl>
+                                - Verify Cashfree webhook signature (x-webhook-signature header)
+                                - Handle events: PAYMENT_SUCCESS, PAYMENT_FAILED, PAYMENT_USER_DROPPED
+                                - Update Payment + Subscription in DB
+                                - Idempotent: handle duplicate webhooks safely
+                                - Return 200 immediately (process async)
+
+                                4. <hl>POST /api/v1/payments/cancel</hl>
+                                - Downgrade to FREE at end of billing period
+                                - Set cancelAtPeriodEnd: true (don't immediately remove access)
+
+                                <hl>SUBSCRIPTION GATING (lib/subscription.ts):</hl>
+                                - getUserPlan(userId) → FREE | PRO | ELITE
+                                - checkFeatureAccess(userId, feature) → boolean
+                                - Features map:
+                                - FREE: 10 PYQs/day, 3 tests/month, basic result, 1 exam
+                                - PRO: unlimited PYQs, unlimited tests, AI explain (100/mo), 3 exams, custom test, PDF
+                                download
+                                - ELITE: all Pro + unlimited AI, all exams, study plan, priority support
+
+                                <hl>FRONTEND:</hl>
+                                1. components/payments/PricingCard.tsx — plan card with CTA
+                                2. app/(public)/pricing/page.tsx — full pricing page with yearly/monthly toggle
+                                3. app/(auth)/payment/verify/page.tsx — post-payment verification page
+                                4. components/payments/UpgradeModal.tsx — shows when free user hits a Pro feature
+
+                                <hl>MIDDLEWARE (middleware.ts):</hl>
+                                - Protect all /(auth) routes
+                                - For API routes that need Pro/Elite: check subscription before processing
+                                - Return 402 Payment Required with upgrade URL when feature locked
+
+                                <em>Write the complete cashfree.ts library, all API routes, and React components.
+                                    Include TypeScript. Test with Cashfree sandbox credentials.</em>
+                            </div>
+                        </div>
+                        <div class="atab-content" data-agent="ag9" data-tab="delivers">
+                            <div class="deliverables">
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">lib/cashfree.ts</div>
+                                        <div class="ddesc">Cashfree SDK wrapper with createOrder + verifyOrder</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/api/v1/payments/webhook/route.ts</div>
+                                        <div class="ddesc">Webhook handler with signature verification</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">lib/subscription.ts</div>
+                                        <div class="ddesc">Feature gating helper functions</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">components/payments/UpgradeModal.tsx</div>
+                                        <div class="ddesc">Upgrade prompt with plan comparison</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(auth)/payment/verify/page.tsx</div>
+                                        <div class="ddesc">Post-payment success/failure page</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AGENT 10 -->
+                <div class="agent-card" id="ag10">
+                    <div class="agent-header" onclick="toggleAgent('ag10')">
+                        <div class="agent-icon" style="background:rgba(244,63,94,0.1)">🛠️</div>
+                        <div class="agent-info">
+                            <div class="agent-num">Agent 10</div>
+                            <div class="agent-title">Admin Panel (Question Editor + Test Builder)</div>
+                            <div class="agent-desc">Full admin dashboard: question CRUD with live LaTeX preview, test
+                                builder, user management, Excel bulk import</div>
+                            <div class="agent-tags">
+                                <span class="tag tag-ui">React</span><span class="tag tag-db">Prisma</span><span
+                                    class="tag tag-api">Admin Auth</span>
+                            </div>
+                        </div>
+                        <div class="chevron">⌄</div>
+                    </div>
+                    <div class="agent-body">
+                        <div class="agent-tabs">
+                            <div class="atab active" onclick="switchTab(this,'ag10','prompt')">Prompt</div>
+                            <div class="atab" onclick="switchTab(this,'ag10','delivers')">Deliverables</div>
+                        </div>
+                        <div class="atab-content active" data-agent="ag10" data-tab="prompt">
+                            <div class="prompt-box">
+                                <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+                                You are building the admin panel for a PYQ test series platform.
+
+                                <em>TASK: Build a complete admin panel with question management, test builder, and user
+                                    management.</em>
+
+                                <hl>ADMIN AUTH:</hl>
+                                - Check user email against ADMIN_EMAILS env variable
+                                - Separate layout app/(admin)/layout.tsx with admin sidebar
+                                - All admin routes return 403 if not admin
+
+                                <hl>1. ADMIN DASHBOARD (app/(admin)/admin/page.tsx):</hl>
+                                - Stats: total questions, verified questions, pending review, total users, active
+                                subscriptions, MRR
+                                - Today's activity: questions added, tests attempted, new signups
+                                - Revenue chart (Recharts BarChart, last 30 days)
+                                - Quick actions: Add Question, Create Test, Generate Questions, Import Excel
+
+                                <hl>2. QUESTION MANAGER (app/(admin)/admin/questions/page.tsx):</hl>
+                                - Table: all questions with filters (exam, chapter, type, isVerified, isPYQ)
+                                - Bulk actions: verify selected, delete selected, move to different chapter
+                                - "Add Question" button → opens QuestionEditor modal
+                                - Search by question text keyword
+
+                                <hl>3. QUESTION EDITOR (components/admin/QuestionEditor.tsx):</hl>
+                                This is the most important admin component:
+                                - Split-pane: editor left, live preview right
+                                - Question text: textarea with LaTeX shortcuts toolbar ($x^2$, $\frac{}{}$, $\int$,
+                                etc.)
+                                - Live KaTeX preview as user types (debounced 300ms)
+                                - Options editor: 4 option fields each with LaTeX preview, radio to mark correct
+                                - Explanation editor with LaTeX preview
+                                - Metadata: Exam selector → Subject → Chapter → Topic cascade dropdowns
+                                - Year, Source, Difficulty, Marks, Negative Marks fields
+                                - Question type selector (changes option UI accordingly)
+                                - Image upload (to Cloudflare R2)
+                                - Save as Draft / Publish / Verify buttons
+
+                                <hl>4. TEST BUILDER (app/(admin)/admin/tests/page.tsx):</hl>
+                                - Create test: name, exam, type (Full/Chapter/Topic/PYQ), duration, scheduled date
+                                - Question selector: filter questions by chapter/year/difficulty, drag to add
+                                - Reorder questions by drag-and-drop
+                                - Preview test before publishing
+                                - Publish → makes test available to students
+
+                                <hl>5. USER MANAGEMENT (app/(admin)/admin/users/page.tsx):</hl>
+                                - Table: all users, subscription plan, tests attempted, join date
+                                - Search by email/name
+                                - Actions: upgrade plan, downgrade, ban user
+                                - Export to CSV
+
+                                <em>All admin components must be polished. The question editor especially needs to be
+                                    excellent — admins will spend hours in it. Include all CRUD operations with proper
+                                    error handling and toast notifications.</em>
+                            </div>
+                        </div>
+                        <div class="atab-content" data-agent="ag10" data-tab="delivers">
+                            <div class="deliverables">
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(admin)/admin/page.tsx</div>
+                                        <div class="ddesc">Admin dashboard with revenue charts</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">components/admin/QuestionEditor.tsx</div>
+                                        <div class="ddesc">Split-pane editor with live LaTeX preview</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(admin)/admin/tests/page.tsx</div>
+                                        <div class="ddesc">Test builder with drag-and-drop questions</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(admin)/admin/users/page.tsx</div>
+                                        <div class="ddesc">User management with subscription controls</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AGENT 11 -->
+                <div class="agent-card" id="ag11">
+                    <div class="agent-header" onclick="toggleAgent('ag11')">
+                        <div class="agent-icon" style="background:rgba(34,212,138,0.1)">🌱</div>
+                        <div class="agent-info">
+                            <div class="agent-num">Agent 11</div>
+                            <div class="agent-title">AI Seeder + Excel Importer + Review Queue</div>
+                            <div class="agent-desc">Bulk question generation scripts, Excel import pipeline, admin
+                                seeder UI panel, and review/approval workflow</div>
+                            <div class="agent-tags">
+                                <span class="tag tag-ai">Claude API</span><span class="tag tag-file">XLSX</span><span
+                                    class="tag tag-db">Prisma</span><span class="tag tag-ui">Admin UI</span>
+                            </div>
+                        </div>
+                        <div class="chevron">⌄</div>
+                    </div>
+                    <div class="agent-body">
+                        <div class="agent-tabs">
+                            <div class="atab active" onclick="switchTab(this,'ag11','prompt')">Prompt</div>
+                            <div class="atab" onclick="switchTab(this,'ag11','delivers')">Deliverables</div>
+                        </div>
+                        <div class="atab-content active" data-agent="ag11" data-tab="prompt">
+                            <div class="prompt-box">
+                                <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+                                You are building the data pipeline for seeding 50,000+ questions into a PYQ test series
+                                platform.
+
+                                <em>TASK: Build the complete question seeding system — AI generator, Excel importer, and
+                                    admin review UI.</em>
+
+                                <hl>1. AI SEED SCRIPT (scripts/ai-seed.js):</hl>
+                                Node.js CLI script (runs outside Next.js):
+                                - Args: --exam=JEE_MAIN --chapters=all|"Electrostatics,Mechanics" --count=10
+                                --difficulty=mixed
+                                - Loads chapter list from DB
+                                - For each chapter: calls Claude API to generate `count` questions
+                                - Claude prompt must enforce: proper LaTeX with double-escaped backslashes, 4 plausible
+                                options, complete step-by-step explanation, realistic PYQ style for that specific exam
+                                - Saves to DB with isVerified=false, isPYQ=false, source="AI Generated"
+                                - Handles rate limiting (delay between chapters), retries on failure
+                                - Progress bar in terminal: [████████░░] 80% — Electrostatics (8/10 chapters)
+                                - Final report: total generated, failed, time taken
+
+                                <hl>2. EXCEL IMPORTER (scripts/import-excel.js):</hl>
+                                - Reads Excel file with columns: Question, Option_A, Option_B, Option_C, Option_D,
+                                Correct_Answer (A/B/C/D), Explanation, Exam, Subject, Chapter, Topic, Year, Source,
+                                Difficulty, Marks, NegMarks, Type
+                                - Validates each row (required fields, valid enum values, valid exam/chapter references)
+                                - Converts to DB format (LaTeX remains as-is from Excel)
+                                - Upsert by (question text + exam + year) to avoid duplicates
+                                - Run: node scripts/import-excel.js --file=./data/jee-2023.xlsx --exam=JEE_MAIN
+                                --verify=false
+
+                                <hl>3. ADMIN SEEDER UI (app/(admin)/admin/seeder/page.tsx):</hl>
+                                - Generate Questions panel: select exam, chapter, count (5-50), difficulty — "Generate"
+                                button
+                                - Shows real-time generation progress (SSE stream from /api/v1/admin/seed/generate)
+                                - Upload Excel panel: drag-and-drop, preview first 5 rows, import button
+                                - Review Queue panel: table of unverified questions
+                                - Each row: question preview (truncated), exam, chapter, difficulty, AI/Excel badge
+                                - Actions: Quick Approve, Edit (opens QuestionEditor), Delete
+                                - Bulk approve button
+                                - Stats: X pending review, Y approved today, Z total in DB
+
+                                <hl>4. API ROUTE (app/api/v1/admin/seed/generate/route.ts):</hl>
+                                - POST with SSE (Server-Sent Events) streaming
+                                - Streams progress events: { type: "progress", chapter, count, total }
+                                - Streams results: { type: "done", generated, failed }
+
+                                <hl>EXCEL TEMPLATE:</hl>
+                                Generate a sample Excel template file structure (describe all column headers and
+                                accepted values).
+
+                                <em>The AI seed script should be able to generate 1,000 questions per exam run
+                                    unattended. Write complete Node.js scripts (not TypeScript) for the CLI scripts.
+                                    Write TypeScript for the Next.js components.</em>
+                            </div>
+                        </div>
+                        <div class="atab-content" data-agent="ag11" data-tab="delivers">
+                            <div class="deliverables">
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">scripts/ai-seed.js</div>
+                                        <div class="ddesc">CLI: generates 1000+ questions per run with progress bar
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">scripts/import-excel.js</div>
+                                        <div class="ddesc">Excel → DB importer with validation</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/(admin)/admin/seeder/page.tsx</div>
+                                        <div class="ddesc">Full seeder panel with review queue</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/api/v1/admin/seed/generate/route.ts</div>
+                                        <div class="ddesc">SSE streaming generation endpoint</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AGENT 12 -->
+                <div class="agent-card" id="ag12">
+                    <div class="agent-header" onclick="toggleAgent('ag12')">
+                        <div class="agent-icon" style="background:rgba(34,212,138,0.15)">🚀</div>
+                        <div class="agent-info">
+                            <div class="agent-num">Agent 12</div>
+                            <div class="agent-title">SEO + Performance + Deployment</div>
+                            <div class="agent-desc">1000+ static SEO pages, sitemap, robots.txt, next.config
+                                optimization, Vercel deployment config, Sentry + PostHog setup</div>
+                            <div class="agent-tags">
+                                <span class="tag tag-api">Next.js SEO</span><span class="tag tag-api">Vercel</span><span
+                                    class="tag tag-file">Sitemap</span><span class="tag tag-api">Monitoring</span>
+                            </div>
+                        </div>
+                        <div class="chevron">⌄</div>
+                    </div>
+                    <div class="agent-body">
+                        <div class="agent-tabs">
+                            <div class="atab active" onclick="switchTab(this,'ag12','prompt')">Prompt</div>
+                            <div class="atab" onclick="switchTab(this,'ag12','delivers')">Deliverables</div>
+                        </div>
+                        <div class="atab-content active" data-agent="ag12" data-tab="prompt">
+                            <div class="prompt-box">
+                                <button class="copy-prompt" onclick="copyPrompt(this)">Copy</button>
+                                You are finalizing a PYQ test series platform for production launch. Handle SEO,
+                                performance, and deployment.
+
+                                <em>TASK: Build SEO infrastructure, optimize performance, and set up production
+                                    deployment.</em>
+
+                                <hl>1. SEO STRATEGY — 1000+ Static Pages:</hl>
+                                Generate all the generateStaticParams() and generateMetadata() implementations for:
+                                - /pyq/[exam] — "JEE Main PYQ 2015-2024 | All Chapters Chapter-wise"
+                                - /pyq/[exam]/[chapter] — "JEE Main Electrostatics PYQs | 2015-2024 with Solutions"
+                                - /pyq/[exam]/[chapter]/[year] — "JEE Main Electrostatics 2023 Questions"
+                                - /exams/[slug] — "JEE Main 2025 Preparation | PYQs, Mock Tests, Solutions"
+                                These pages must rank on Google for "JEE Main [chapter] PYQ" searches.
+
+                                <hl>2. METADATA SYSTEM (lib/seo.ts):</hl>
+                                - generateExamMetadata(exam, chapter?, year?)
+                                - buildOGImage(title, subtitle, stats) → OG image URL
+                                - canonical URL helper
+                                - structured data (JSON-LD) for Question schema, Course schema
+
+                                <hl>3. SITEMAP (app/sitemap.ts):</hl>
+                                - Dynamic sitemap covering all exam/chapter/year combos
+                                - Priority: 1.0 for exam pages, 0.9 for chapter pages, 0.7 for year pages
+                                - changeFrequency: weekly for exam pages, monthly for PYQ pages
+
+                                <hl>4. NEXT.JS PERFORMANCE (next.config.ts):</hl>
+                                - Image optimization (Cloudflare R2 as remotePattern)
+                                - Bundle analyzer setup
+                                - Headers: security headers (CSP, HSTS, X-Frame-Options)
+                                - Compression
+                                - KaTeX CSS optimization
+
+                                <hl>5. CRON JOBS (app/api/cron/):</hl>
+                                - /api/cron/calculate-ranks — runs every hour, updates AIR ranks for all recent test
+                                attempts
+                                - /api/cron/streak-update — runs daily at midnight, updates user streaks
+                                - /api/cron/subscription-check — runs daily, expires subscriptions past validTill
+                                - Protect all cron routes with CRON_SECRET header
+
+                                <hl>6. MONITORING:</hl>
+                                - Sentry setup: next.config.ts + sentry.client.config.ts + sentry.server.config.ts
+                                - PostHog: app/providers.tsx with PostHogProvider
+                                - Track events: test_started, test_submitted, question_bookmarked, payment_initiated,
+                                payment_success
+
+                                <hl>7. VERCEL DEPLOYMENT (vercel.json):</hl>
+                                - Cron job schedule config
+                                - Environment variables list
+                                - Edge runtime for API routes that need low latency
+
+                                <hl>8. PRE-LAUNCH CHECKLIST (CHECKLIST.md):</hl>
+                                Write a complete markdown checklist of 30+ items to verify before going live.
+
+                                <em>Write all config files, lib functions, and route handlers. Include the complete
+                                    CHECKLIST.md.</em>
+                            </div>
+                        </div>
+                        <div class="atab-content" data-agent="ag12" data-tab="delivers">
+                            <div class="deliverables">
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">lib/seo.ts</div>
+                                        <div class="ddesc">Metadata + OG + JSON-LD generator functions</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/sitemap.ts</div>
+                                        <div class="ddesc">Dynamic sitemap (1000+ URLs)</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">next.config.ts</div>
+                                        <div class="ddesc">Full Next.js config with security headers</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">app/api/cron/calculate-ranks/route.ts</div>
+                                        <div class="ddesc">Hourly rank calculation cron</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">vercel.json</div>
+                                        <div class="ddesc">Vercel config with cron schedules</div>
+                                    </div>
+                                </div>
+                                <div class="deliverable">
+                                    <div class="dicon">📄</div>
+                                    <div>
+                                        <div class="dname">CHECKLIST.md</div>
+                                        <div class="ddesc">30+ item pre-launch verification checklist</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /agents-grid -->
+        </div>
+
+        <!-- ─── SECTION 5: SUMMARY ─── -->
+        <div class="section">
+            <div class="section-label">05 — Summary</div>
+            <h2 class="section-title">Agent Execution Summary</h2>
+
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Agent</th>
+                        <th>Week</th>
+                        <th>Output</th>
+                        <th>Depends On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>DB Schema + Seed</td>
+                        <td>1</td>
+                        <td>schema.prisma, exams.json, seed.ts</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td>Landing + Public Pages</td>
+                        <td>1–2</td>
+                        <td>Landing, Exams, Pricing pages</td>
+                        <td>01</td>
+                    </tr>
+                    <tr>
+                        <td>03</td>
+                        <td>PYQ Browser + LaTeX</td>
+                        <td>2–3</td>
+                        <td>QuestionCard, LatexRenderer, PYQ pages</td>
+                        <td>01</td>
+                    </tr>
+                    <tr>
+                        <td>04</td>
+                        <td>All API Routes</td>
+                        <td>2–4</td>
+                        <td>20 REST API routes</td>
+                        <td>01</td>
+                    </tr>
+                    <tr>
+                        <td>05</td>
+                        <td>Student Dashboard</td>
+                        <td>4–5</td>
+                        <td>Dashboard with charts</td>
+                        <td>01, 04</td>
+                    </tr>
+                    <tr>
+                        <td>06</td>
+                        <td>Test Engine</td>
+                        <td>5–7</td>
+                        <td>Full test interface + Zustand store</td>
+                        <td>03, 04</td>
+                    </tr>
+                    <tr>
+                        <td>07</td>
+                        <td>Result + Analytics</td>
+                        <td>7–8</td>
+                        <td>Result page, Analytics page, Share card</td>
+                        <td>04, 06</td>
+                    </tr>
+                    <tr>
+                        <td>08</td>
+                        <td>AI Features</td>
+                        <td>8–9</td>
+                        <td>Explain, Hint, Rate limiting</td>
+                        <td>04</td>
+                    </tr>
+                    <tr>
+                        <td>09</td>
+                        <td>Cashfree Payments</td>
+                        <td>9–10</td>
+                        <td>Payment flow, Webhooks, Gating</td>
+                        <td>01, 04</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Admin Panel</td>
+                        <td>8–10</td>
+                        <td>Question editor, Test builder, Users</td>
+                        <td>01, 03</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>AI Seeder + Importer</td>
+                        <td>3–4</td>
+                        <td>ai-seed.js, Excel importer, Review UI</td>
+                        <td>01</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>SEO + Deploy</td>
+                        <td>11–12</td>
+                        <td>Sitemap, Crons, Vercel config, Checklist</td>
+                        <td>All</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout warn">
+                <div class="callout-icon">⚡</div>
+                <div class="callout-content">
+                    <h4>Pro Tip: Run Agent 11 (Seeder) from Week 3</h4>
+                    <p>Don't wait until everything is built. Run
+                        <code>node scripts/ai-seed.js --exam=JEE_MAIN --count=20</code> from week 3 onwards so your DB
+                        has 10,000+ questions by the time the UI is ready to display them. Target: 2,000 verified PYQs +
+                        10,000 AI questions before beta launch.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /page -->
+
+    <script>
+        function toggleAgent(id) {
+            const card = document.getElementById(id);
+            card.classList.toggle('open');
+        }
+
+        function switchTab(tabEl, agentId, tabName) {
+            const card = document.getElementById(agentId);
+            card.querySelectorAll('.atab').forEach(t => t.classList.remove('active'));
+            card.querySelectorAll('.atab-content').forEach(c => c.classList.remove('active'));
+            tabEl.classList.add('active');
+            card.querySelector(`[data-agent="${agentId}"][data-tab="${tabName}"]`).classList.add('active');
+        }
+
+        function copyPrompt(btn) {
+            const box = btn.parentElement;
+            const text = box.innerText.replace('Copy\n', '').replace('\nCopy', '').trim();
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = 'Copied!';
+                btn.classList.add('ok');
+                setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('ok'); }, 2000);
+            });
+        }
+
+        // Open first agent by default
+        document.getElementById('ag1').classList.add('open');
+    </script>
+</body>
+
+</html>
